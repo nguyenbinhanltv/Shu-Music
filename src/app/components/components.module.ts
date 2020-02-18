@@ -8,7 +8,9 @@ import {
   NbMenuModule,
   NbLayoutModule,
   NbCardModule,
-  NbUserModule
+  NbUserModule,
+  NbProgressBarModule,
+  NbIconModule
 } from '@nebular/theme';
 import { SearchComponent } from './header/search/search.component';
 import { LogoComponent } from './header/logo/logo.component';
@@ -16,7 +18,8 @@ import { LoginComponent } from './header/login/login.component';
 import { ThemeComponent } from './header/theme/theme.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginDialogComponent } from './dialog/login-dialog/login-dialog.component';
-
+import { FooterComponent } from './footer/footer.component';
+import { PlayerComponent } from './footer/player/player.component';
 
 
 @NgModule({
@@ -27,7 +30,9 @@ import { LoginDialogComponent } from './dialog/login-dialog/login-dialog.compone
     LoginComponent,
     ThemeComponent,
     SidebarComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    FooterComponent,
+    PlayerComponent
   ],
   imports: [
     CommonModule,
@@ -37,12 +42,15 @@ import { LoginDialogComponent } from './dialog/login-dialog/login-dialog.compone
     NbMenuModule,
     NbLayoutModule,
     NbCardModule,
-    NbUserModule
+    NbUserModule,
+    NbProgressBarModule,
+    NbIconModule
   ],
   entryComponents: [LoginDialogComponent],
   exports: [
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    FooterComponent
   ]
 })
 export class ComponentsModule { }

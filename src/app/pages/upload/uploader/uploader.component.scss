@@ -1,0 +1,35 @@
+.upload-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .dropzone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 40vw;
+    font-weight: 200;
+    height: 300px;
+    border: 2px dashed #ffffff;
+    border-radius: 5px;
+    margin: 10px 0;
+
+    &.hovering {
+        border: 2px solid #ffffff;
+        color: #dadada !important;
+    }
+
+    .file-label {
+      font-size: 1.2em;
+    }
+  }
+}
+
+progress::-webkit-progress-value {
+  transition: width 0.1s ease;
+}
+
+h3 {
+  text-align: center;
+}

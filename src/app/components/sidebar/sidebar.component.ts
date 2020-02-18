@@ -36,9 +36,14 @@ export class SidebarComponent implements OnInit {
         {
           title: 'Liked Song',
           icon: 'heart-outline',
-          link: ['liked']
+          link: ['liked-song']
         },
       ],
+    },
+    {
+      title: 'Upload music',
+      icon: 'cloud-upload-outline',
+      link: ['upload']
     }
   ];
 
