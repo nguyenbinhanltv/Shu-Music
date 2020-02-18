@@ -6,9 +6,10 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadComponent } from './upload.component';
 import { DropzoneDirective } from 'src/app/directives/dropzone.directive';
-import { NbProgressBarModule, NbButtonModule } from '@nebular/theme';
+import { NbProgressBarModule, NbButtonModule, NbCardModule, NbInputModule } from '@nebular/theme';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,9 +23,12 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     CommonModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
+    ReactiveFormsModule,
     UploadRoutingModule,
     NbProgressBarModule,
-    NbButtonModule
+    NbButtonModule,
+    NbCardModule,
+    NbInputModule
   ]
 })
 export class UploadModule { }

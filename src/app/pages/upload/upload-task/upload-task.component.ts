@@ -3,7 +3,8 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-import { AuthService } from 'src/app/services/auth.service';
+import { MusicData } from 'src/app/models/music-data.model';
+import { CloudService } from 'src/app/services/cloud.service';
 
 @Component({
   selector: 'app-upload-task',
@@ -13,20 +14,28 @@ import { AuthService } from 'src/app/services/auth.service';
 export class UploadTaskComponent implements OnInit {
 
   @Input() file: File;
+  @Input() name: string;
+  @Input() singer: string;
+  @Input() artist: string;
 
   task: AngularFireUploadTask;
 
   percentage: Observable<number>;
   snapshot: Observable<any>;
-  downloadURL: string;
+  songURL: string;
 
   constructor(
     private storage: AngularFireStorage,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private cloudService: CloudService
   ) { }
 
   ngOnInit() {
     this.startUpload();
+  }
+
+  log() {
+    console.log(`${this.name}, ${this.singer}, ${this.artist}`);
   }
 
   startUpload() {
@@ -47,8 +56,15 @@ export class UploadTaskComponent implements OnInit {
       tap(console.log),
       // The file's download URL
       finalize( async () =>  {
-        this.downloadURL = await ref.getDownloadURL().toPromise();
-        this.db.collection('files').add( { downloadURL: this.downloadURL, path });
+        this.songURL = await ref.getDownloadURL().toPromise();
+        this.cloudService.updateMusicData({
+          name: this.name,
+          singer: this.singer,
+          artist: this.artist,
+          url: this.songURL,
+          // tslint:disable-next-line: object-literal-shorthand
+          path: path
+        } as MusicData);
       }),
     );
   }

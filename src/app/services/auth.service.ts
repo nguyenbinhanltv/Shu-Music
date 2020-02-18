@@ -15,13 +15,13 @@ export class AuthService {
 
   constructor(
     private afAuth: AngularFireAuth,
-    private afs: AngularFirestore,
+    private db: AngularFirestore,
     private router: Router
   ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          return this.db.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
           return of(null);
         }
@@ -31,13 +31,13 @@ export class AuthService {
 
   user$: Observable<any>;
 
-  async signOut() {
+  async logOut() {
     await this.afAuth.auth.signOut();
     return this.router.navigate(['/']);
   }
 
   public updateUserData({ uid, email, displayName, photoURL }: User) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
+    const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${uid}`);
     const data = {
       uid,
       email,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-uploader',
@@ -9,6 +10,10 @@ export class UploaderComponent implements OnInit {
 
   isHovering: boolean;
   files: File[] = [];
+
+  name = new FormControl('', [Validators.required, Validators.maxLength(100)]);
+  singer = new FormControl('', [Validators.required, Validators.maxLength(100)]);
+  artist = new FormControl('', [Validators.required, Validators.maxLength(100)]);
 
   constructor() { }
 

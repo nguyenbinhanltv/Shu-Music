@@ -19,7 +19,7 @@ export class PlayerComponent implements OnInit {
     private cloudService: CloudService
   ) {
     // get media files
-    this.cloudService.getDataMusic().subscribe(data => {
+    this.cloudService.getMusicData().subscribe(data => {
       this.files = data.map(e => {
         return {
           url: e.payload.doc.get('downloadURL')
@@ -83,9 +83,5 @@ export class PlayerComponent implements OnInit {
 
   onSliderChangeEnd(change) {
     this.audioService.seekTo(change.value);
-  }
-
-  log() {
-    console.log(this.files);
   }
 }

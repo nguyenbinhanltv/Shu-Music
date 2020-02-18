@@ -1,12 +1,14 @@
-.upload-zone {
+@mixin flexBox {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.upload-zone {
+  @include flexBox();
 
   .dropzone {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexBox();
     flex-direction: column;
     width: 40vw;
     font-weight: 200;
@@ -32,4 +34,14 @@ progress::-webkit-progress-value {
 
 h3 {
   text-align: center;
+}
+
+.input-information-song {
+  @include flexBox();
+  flex-direction: column;
+
+  input {
+    margin-bottom: 10px;
+    text-align: center;
+  }
 }

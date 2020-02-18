@@ -1,15 +1,28 @@
-<div class="upload-zone">
-  <div class="dropzone" appDropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
-    <h3>Drop Zone</h3>
-    <p>Drag and Drop a Music File</p>
-    <div class="file">
-      <label class="file-label">
-        <input type="file" class="file-input" (change)="onDrop($event.target.files)">
-      </label>
+<nb-card>
+  <nb-card-body class="example-items-col">
+
+    <div class="input-information-song">
+      <input type="text" nbInput shape="rectangle" placeholder="Name song" [formControl]="name" required>
+      <input type="text" nbInput shape="rectangle" placeholder="Singer" [formControl]="singer" required>
+      <input type="text" nbInput shape="rectangle" placeholder="Artist" [formControl]="artist" required>
     </div>
-  </div>
-</div>
-<h3>Uploads</h3>
-<div *ngFor="let file of files">
-  <app-upload-task [file]="file"></app-upload-task>
-</div>
+
+    <div class="upload-zone">
+      <div class="dropzone" appDropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)"
+        [class.hovering]="isHovering">
+        <h3>Drop Zone</h3>
+        <p>Drag and Drop a Music File</p>
+        <div class="file">
+          <label class="file-label">
+            <input type="file" class="file-input" (change)="onDrop($event.target.files)">
+          </label>
+        </div>
+      </div>
+    </div>
+    <h3>Uploads</h3>
+    <div *ngFor="let file of files">
+      <app-upload-task [file]="file" [name]="name.value" [singer]="singer.value" [artist]="artist.value"></app-upload-task>
+    </div>
+
+  </nb-card-body>
+</nb-card>

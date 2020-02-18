@@ -32,7 +32,7 @@ export class LoginDialogComponent implements OnInit {
   }
 
   signOut() {
-    this.authService.signOut();
+    this.authService.logOut();
     setTimeout(this.dialogRef.close, 1000);
   }
 

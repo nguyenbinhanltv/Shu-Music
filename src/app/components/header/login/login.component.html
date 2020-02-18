@@ -11,7 +11,7 @@
   <div *ngIf="authService.user$ | async as user" (click)="open()">
     <nb-user size="large"
              name={{user.displayName}}
-             title="Member"
+             title={{user.email}}
              picture={{user.photoURL}}>
     </nb-user>
   </div>
