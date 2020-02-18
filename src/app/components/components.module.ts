@@ -9,7 +9,8 @@ import {
   NbLayoutModule,
   NbCardModule,
   NbUserModule,
-  NbProgressBarModule
+  NbProgressBarModule,
+  NbIconModule
 } from '@nebular/theme';
 import { SearchComponent } from './header/search/search.component';
 import { LogoComponent } from './header/logo/logo.component';
@@ -18,23 +19,7 @@ import { ThemeComponent } from './header/theme/theme.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginDialogComponent } from './dialog/login-dialog/login-dialog.component';
 import { FooterComponent } from './footer/footer.component';
-import {
-  MatButtonModule,
-  MatListModule,
-  MatSliderModule,
-  MatIconModule,
-  MatToolbarModule,
-  MatCardModule
-} from '@angular/material';
-
-const modules = [
-  MatButtonModule,
-  MatListModule,
-  MatSliderModule,
-  MatIconModule,
-  MatToolbarModule,
-  MatCardModule
-];
+import { PlayerComponent } from './footer/player/player.component';
 
 
 @NgModule({
@@ -46,7 +31,8 @@ const modules = [
     ThemeComponent,
     SidebarComponent,
     LoginDialogComponent,
-    FooterComponent
+    FooterComponent,
+    PlayerComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +44,7 @@ const modules = [
     NbCardModule,
     NbUserModule,
     NbProgressBarModule,
-    modules
+    NbIconModule
   ],
   entryComponents: [LoginDialogComponent],
   exports: [
