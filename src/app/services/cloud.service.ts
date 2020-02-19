@@ -15,13 +15,15 @@ export class CloudService {
     return this.db.collection('files').snapshotChanges();
   }
 
-  updateMusicData({name, artist, url, path}: MusicData) {
+  updateMusicData({name, artist, musicURL, musicPath, imgURL, imgPath}: MusicData) {
     const dataRef = this.db.collection('files');
     const data = {
       name,
       artist,
-      url,
-      path
+      musicURL,
+      musicPath,
+      imgURL,
+      imgPath
     };
     return dataRef.add(data);
   }

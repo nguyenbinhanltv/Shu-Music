@@ -8,8 +8,8 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class UploaderComponent implements OnInit {
 
-  isHovering: boolean;
-  files: File[] = [];
+  musicFiles: File[] = [];
+  imgFiles: File[] = [];
 
   name = new FormControl('', [Validators.required, Validators.maxLength(100)]);
   singer = new FormControl('', [Validators.required, Validators.maxLength(100)]);
@@ -17,17 +17,18 @@ export class UploaderComponent implements OnInit {
 
   constructor() { }
 
-  toggleHover(event: boolean) {
-    this.isHovering = event;
-  }
-
-  onDrop(files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      this.files.push(files.item(i));
-    }
-  }
-
   ngOnInit() {
   }
 
+  receivedImgFile(event) {
+    this.imgFiles = event;
+  }
+
+  receivedMusicFile(event) {
+    this.musicFiles = event;
+  }
+
+  log() {
+    console.log(`${this.imgFiles}, ${this.musicFiles}`);
+  }
 }

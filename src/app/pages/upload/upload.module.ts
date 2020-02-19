@@ -10,6 +10,8 @@ import { NbProgressBarModule, NbButtonModule, NbCardModule, NbInputModule } from
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UploadMusicComponent } from './uploader/upload-music/upload-music.component';
+import { UpdateImageComponent } from './uploader/update-image/update-image.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     UploadComponent,
     UploadTaskComponent,
     UploaderComponent,
-    DropzoneDirective
+    DropzoneDirective,
+    UploadMusicComponent,
+    UpdateImageComponent
   ],
   imports: [
     CommonModule,

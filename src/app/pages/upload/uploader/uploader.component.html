@@ -7,21 +7,13 @@
       <input type="text" nbInput shape="rectangle" placeholder="Artist" [formControl]="artist" required>
     </div>
 
-    <div class="upload-zone">
-      <div class="dropzone" appDropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)"
-        [class.hovering]="isHovering">
-        <h3>Drop Zone</h3>
-        <p>Drag and Drop a Music File</p>
-        <div class="file">
-          <label class="file-label">
-            <input type="file" class="file-input" (change)="onDrop($event.target.files)">
-          </label>
-        </div>
-      </div>
-    </div>
+    <app-update-image (imgFiles)="receivedImgFile($event)"></app-update-image>
+    <app-upload-music (musicFiles)="receivedMusicFile($event)"></app-upload-music>
+
+
     <h3>Uploads</h3>
-    <div *ngFor="let file of files">
-      <app-upload-task [file]="file" [name]="name.value" [singer]="singer.value" [artist]="artist.value"></app-upload-task>
+    <div *ngFor="let musicFile of musicFiles; let imgFile of imgFiles">
+      <app-upload-task [musicFile]="musicFile" [imgFile]="imgFile" [name]="name.value" [singer]="singer.value" [artist]="artist.value"></app-upload-task>
     </div>
 
   </nb-card-body>

@@ -13,7 +13,8 @@ import { CloudService } from 'src/app/services/cloud.service';
 })
 export class UploadTaskComponent implements OnInit {
 
-  @Input() file: File;
+  @Input() musicFile: File;
+  @Input() imgFile: File;
   @Input() name: string;
   @Input() singer: string;
   @Input() artist: string;
@@ -22,7 +23,9 @@ export class UploadTaskComponent implements OnInit {
 
   percentage: Observable<number>;
   snapshot: Observable<any>;
+
   songURL: string;
+  imgURL: string;
 
   constructor(
     private storage: AngularFireStorage,
@@ -35,19 +38,22 @@ export class UploadTaskComponent implements OnInit {
   }
 
   log() {
-    console.log(`${this.name}, ${this.singer}, ${this.artist}`);
+    console.log(`${this.name}, ${this.singer}, ${this.artist}, ${this.musicFile}, ${this.imgFile}`);
   }
 
   startUpload() {
 
     // The storage path
-    const path = `music/${Date.now()}_${this.file.name}`;
+    const musicPath = `music/${Date.now()}_${this.musicFile.name}`;
+    const imgPath = `images/${Date.now()}_${this.imgFile.name}`;
 
     // Reference to storage bucket
-    const ref = this.storage.ref(path);
+    const musicRef = this.storage.ref(musicPath);
+    const imgRef = this.storage.ref(imgPath);
 
     // The main task
-    this.task = this.storage.upload(path, this.file);
+    this.storage.upload(imgPath, this.imgFile);
+    this.task = this.storage.upload(musicPath, this.musicFile);
 
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
@@ -56,14 +62,16 @@ export class UploadTaskComponent implements OnInit {
       tap(console.log),
       // The file's download URL
       finalize( async () =>  {
-        this.songURL = await ref.getDownloadURL().toPromise();
+        this.songURL = await musicRef.getDownloadURL().toPromise();
+        this.imgURL = await imgRef.getDownloadURL().toPromise();
         this.cloudService.updateMusicData({
           name: this.name,
           singer: this.singer,
           artist: this.artist,
-          url: this.songURL,
-          // tslint:disable-next-line: object-literal-shorthand
-          path: path
+          musicURL: this.songURL,
+          imgURL: this.imgURL,
+          musicPath: `${musicPath}`,
+          imgPath: `${imgPath}`
         } as MusicData);
       }),
     );
