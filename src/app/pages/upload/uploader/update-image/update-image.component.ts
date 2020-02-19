@@ -27,8 +27,4 @@ export class UpdateImageComponent implements OnInit {
     this.imgFiles.emit(this.files);
   }
 
-  log() {
-    console.log(this.files);
-  }
-
 }

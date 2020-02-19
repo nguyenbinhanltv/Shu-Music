@@ -27,8 +27,4 @@ export class UploadMusicComponent implements OnInit {
     }
   }
 
-  log() {
-    console.log(this.files);
-  }
-
 }

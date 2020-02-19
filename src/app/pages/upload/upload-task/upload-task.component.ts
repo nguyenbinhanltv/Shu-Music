@@ -29,7 +29,6 @@ export class UploadTaskComponent implements OnInit {
 
   constructor(
     private storage: AngularFireStorage,
-    private db: AngularFirestore,
     private cloudService: CloudService
   ) { }
 
@@ -38,7 +37,11 @@ export class UploadTaskComponent implements OnInit {
   }
 
   log() {
-    console.log(`${this.name}, ${this.singer}, ${this.artist}, ${this.musicFile}, ${this.imgFile}`);
+    console.log(this.musicFile);
+  }
+
+  log1() {
+    console.log(this.imgFile);
   }
 
   startUpload() {
@@ -58,12 +61,14 @@ export class UploadTaskComponent implements OnInit {
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
 
-    this.snapshot   = this.task.snapshotChanges().pipe(
+    this.snapshot = this.task.snapshotChanges().pipe(
       tap(console.log),
       // The file's download URL
       finalize( async () =>  {
         this.songURL = await musicRef.getDownloadURL().toPromise();
         this.imgURL = await imgRef.getDownloadURL().toPromise();
+        console.log(this.songURL);
+        console.log(this.imgURL);
         this.cloudService.updateMusicData({
           name: this.name,
           singer: this.singer,

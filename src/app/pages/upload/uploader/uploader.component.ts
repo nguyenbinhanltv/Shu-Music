@@ -28,7 +28,4 @@ export class UploaderComponent implements OnInit {
     this.musicFiles = event;
   }
 
-  log() {
-    console.log(`${this.imgFiles}, ${this.musicFiles}`);
-  }
 }

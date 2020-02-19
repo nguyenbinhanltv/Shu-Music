@@ -10,11 +10,11 @@
     <app-update-image (imgFiles)="receivedImgFile($event)"></app-update-image>
     <app-upload-music (musicFiles)="receivedMusicFile($event)"></app-upload-music>
 
-
     <h3>Uploads</h3>
-    <div *ngFor="let musicFile of musicFiles; let imgFile of imgFiles">
-      <app-upload-task [musicFile]="musicFile" [imgFile]="imgFile" [name]="name.value" [singer]="singer.value" [artist]="artist.value"></app-upload-task>
+    <div *ngFor="let musicFile of musicFiles">
+      <div *ngFor="let imgFile of imgFiles">
+        <app-upload-task [musicFile]="musicFile" [imgFile]="imgFile" [name]="name.value" [singer]="singer.value" [artist]="artist.value"></app-upload-task>
+      </div>
     </div>
-
   </nb-card-body>
 </nb-card>
