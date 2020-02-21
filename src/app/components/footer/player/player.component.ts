@@ -22,7 +22,13 @@ export class PlayerComponent implements OnInit {
     this.cloudService.getMusicData().subscribe(data => {
       this.files = data.map(e => {
         return {
-          url: e.payload.doc.get('downloadURL')
+          name: e.payload.doc.get('name'),
+          singer: e.payload.doc.get('singer'),
+          artist: e.payload.doc.get('artist'),
+          musicURL: e.payload.doc.get('musicURL'),
+          imgURL: e.payload.doc.get('imgURL'),
+          musicPath: e.payload.doc.get('musicPath'),
+          imgPath: e.payload.doc.get('imgPath')
         };
       });
     });
@@ -44,7 +50,7 @@ export class PlayerComponent implements OnInit {
   openFile(file, index) {
     this.currentFile = { index, file };
     this.audioService.stop();
-    this.playStream(file.url);
+    this.playStream(file.musicURL);
   }
 
   pause() {

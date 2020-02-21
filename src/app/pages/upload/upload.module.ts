@@ -6,7 +6,13 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadComponent } from './upload.component';
 import { DropzoneDirective } from 'src/app/directives/dropzone.directive';
-import { NbProgressBarModule, NbButtonModule, NbCardModule, NbInputModule } from '@nebular/theme';
+import {
+  NbProgressBarModule,
+  NbButtonModule,
+  NbCardModule,
+  NbInputModule,
+  NbListModule
+} from '@nebular/theme';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -32,7 +38,8 @@ import { UpdateImageComponent } from './uploader/update-image/update-image.compo
     NbProgressBarModule,
     NbButtonModule,
     NbCardModule,
-    NbInputModule
+    NbInputModule,
+    NbListModule
   ]
 })
 export class UploadModule { }

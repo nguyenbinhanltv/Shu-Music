@@ -45,8 +45,8 @@ export class UploadTaskComponent implements OnInit {
   }
 
   startUpload() {
-
-    // The storage path
+    if (this.imgFile !== null && this.musicFile !== null) {
+      // The storage path
     const musicPath = `music/${Date.now()}_${this.musicFile.name}`;
     const imgPath = `images/${Date.now()}_${this.imgFile.name}`;
 
@@ -67,8 +67,6 @@ export class UploadTaskComponent implements OnInit {
       finalize( async () =>  {
         this.songURL = await musicRef.getDownloadURL().toPromise();
         this.imgURL = await imgRef.getDownloadURL().toPromise();
-        console.log(this.songURL);
-        console.log(this.imgURL);
         this.cloudService.updateMusicData({
           name: this.name,
           singer: this.singer,
@@ -80,6 +78,7 @@ export class UploadTaskComponent implements OnInit {
         } as MusicData);
       }),
     );
+    }
   }
 
   isActive(snapshot) {

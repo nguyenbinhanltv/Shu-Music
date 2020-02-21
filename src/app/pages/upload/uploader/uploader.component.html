@@ -1,20 +1,16 @@
-<nb-card>
-  <nb-card-body class="example-items-col">
+<div class="input-information-song">
+  <input type="text" nbInput shape="rectangle" placeholder="Name song" [formControl]="name" required>
+  <input type="text" nbInput shape="rectangle" placeholder="Singer" [formControl]="singer" required>
+  <input type="text" nbInput shape="rectangle" placeholder="Artist" [formControl]="artist" required>
+</div>
 
-    <div class="input-information-song">
-      <input type="text" nbInput shape="rectangle" placeholder="Name song" [formControl]="name" required>
-      <input type="text" nbInput shape="rectangle" placeholder="Singer" [formControl]="singer" required>
-      <input type="text" nbInput shape="rectangle" placeholder="Artist" [formControl]="artist" required>
-    </div>
+<app-update-image (imgFiles)="receivedImgFile($event)"></app-update-image>
+<app-upload-music (musicFiles)="receivedMusicFile($event)"></app-upload-music>
 
-    <app-update-image (imgFiles)="receivedImgFile($event)"></app-update-image>
-    <app-upload-music (musicFiles)="receivedMusicFile($event)"></app-upload-music>
-
-    <h3>Uploads</h3>
-    <div *ngFor="let musicFile of musicFiles">
-      <div *ngFor="let imgFile of imgFiles">
-        <app-upload-task [musicFile]="musicFile" [imgFile]="imgFile" [name]="name.value" [singer]="singer.value" [artist]="artist.value"></app-upload-task>
-      </div>
-    </div>
-  </nb-card-body>
-</nb-card>
+<h3>Uploads</h3>
+<div *ngFor="let musicFile of musicFiles">
+  <div *ngFor="let imgFile of imgFiles">
+    <app-upload-task [musicFile]="musicFile" [imgFile]="imgFile" [name]="name.value" [singer]="singer.value"
+      [artist]="artist.value"></app-upload-task>
+  </div>
+</div>

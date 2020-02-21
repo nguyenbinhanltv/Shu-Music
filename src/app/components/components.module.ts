@@ -10,7 +10,8 @@ import {
   NbCardModule,
   NbUserModule,
   NbProgressBarModule,
-  NbIconModule
+  NbIconModule,
+  NbListModule
 } from '@nebular/theme';
 import { SearchComponent } from './header/search/search.component';
 import { LogoComponent } from './header/logo/logo.component';
@@ -44,7 +45,8 @@ import { PlayerComponent } from './footer/player/player.component';
     NbCardModule,
     NbUserModule,
     NbProgressBarModule,
-    NbIconModule
+    NbIconModule,
+    NbListModule
   ],
   entryComponents: [LoginDialogComponent],
   exports: [

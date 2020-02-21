@@ -12,3 +12,14 @@ nb-card-body {
 .mid {
   margin: 10px;
 }
+
+nb-user {
+  cursor: pointer;
+}
+
+.player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}

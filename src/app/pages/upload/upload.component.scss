@@ -1,0 +1,14 @@
+.upload {
+  display: flex;
+  justify-content: center;
+  border: none;
+}
+
+.nb-theme-cosmic nb-list-item:first-child {
+  border: none;
+}
+
+nb-card {
+  width: 100%;
+  min-height: 100%;
+}
