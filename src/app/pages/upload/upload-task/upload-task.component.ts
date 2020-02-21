@@ -46,40 +46,42 @@ export class UploadTaskComponent implements OnInit {
 
   startUpload() {
 
-    // The storage path
-    const musicPath = `music/${Date.now()}_${this.musicFile.name}`;
-    const imgPath = `images/${Date.now()}_${this.imgFile.name}`;
+    if (this.musicFile !== null && this.imgFile !== null) {
+      // The storage path
+      const musicPath = `music/${Date.now()}_${this.musicFile.name}`;
+      const imgPath = `images/${Date.now()}_${this.imgFile.name}`;
 
-    // Reference to storage bucket
-    const musicRef = this.storage.ref(musicPath);
-    const imgRef = this.storage.ref(imgPath);
+      // Reference to storage bucket
+      const musicRef = this.storage.ref(musicPath);
+      const imgRef = this.storage.ref(imgPath);
 
-    // The main task
-    this.storage.upload(imgPath, this.imgFile);
-    this.task = this.storage.upload(musicPath, this.musicFile);
+      // The main task
+      this.storage.upload(imgPath, this.imgFile);
+      this.task = this.storage.upload(musicPath, this.musicFile);
 
-    // Progress monitoring
-    this.percentage = this.task.percentageChanges();
+      // Progress monitoring
+      this.percentage = this.task.percentageChanges();
 
-    this.snapshot = this.task.snapshotChanges().pipe(
-      tap(console.log),
-      // The file's download URL
-      finalize( async () =>  {
-        this.songURL = await musicRef.getDownloadURL().toPromise();
-        this.imgURL = await imgRef.getDownloadURL().toPromise();
-        console.log(this.songURL);
-        console.log(this.imgURL);
-        this.cloudService.updateMusicData({
-          name: this.name,
-          singer: this.singer,
-          artist: this.artist,
-          musicURL: this.songURL,
-          imgURL: this.imgURL,
-          musicPath: `${musicPath}`,
-          imgPath: `${imgPath}`
-        } as MusicData);
-      }),
-    );
+      this.snapshot = this.task.snapshotChanges().pipe(
+        tap(console.log),
+        // The file's download URL
+        finalize( async () =>  {
+          this.songURL = await musicRef.getDownloadURL().toPromise();
+          this.imgURL = await imgRef.getDownloadURL().toPromise();
+          console.log(this.songURL);
+          console.log(this.imgURL);
+          this.cloudService.updateMusicData({
+            name: this.name,
+            singer: this.singer,
+            artist: this.artist,
+            musicURL: this.songURL,
+            imgURL: this.imgURL,
+            musicPath: `${musicPath}`,
+            imgPath: `${imgPath}`
+          } as MusicData);
+        }),
+      );
+    }
   }
 
   isActive(snapshot) {
