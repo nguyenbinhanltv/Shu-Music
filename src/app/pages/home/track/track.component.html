@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-card-body>
+    <nb-user (click)="openFile(file, cloudService.index)" shape="rectangle" size="medium"
+      name={{file.name}}
+      title={{file.artist}}
+      picture={{file.imgURL}}>
+    </nb-user>
+    <div>
+      <nb-icon icon="heart-outline"></nb-icon>
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </div>
+  </nb-card-body>
+</nb-card>

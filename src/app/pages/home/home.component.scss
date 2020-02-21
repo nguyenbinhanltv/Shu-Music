@@ -1,0 +1,15 @@
+nb-card {
+  width: 100%;
+  min-height: 100%;
+}
+
+.tracks {
+  border: none !important;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+app-track {
+  width: 100%;
+}

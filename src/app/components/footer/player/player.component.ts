@@ -10,23 +10,12 @@ import { CloudService } from 'src/app/services/cloud.service';
 })
 export class PlayerComponent implements OnInit {
 
-  files: Array<any> = null;
   state: StreamState;
-  currentFile: any = {};
 
   constructor(
-    private audioService: AudioService,
+    public audioService: AudioService,
     private cloudService: CloudService
   ) {
-    // get media files
-    this.cloudService.getMusicData().subscribe(data => {
-      this.files = data.map(e => {
-        return {
-          url: e.payload.doc.get('downloadURL')
-        };
-      });
-    });
-
     this.audioService.getState().subscribe(state => {
       this.state = state;
     });
@@ -42,9 +31,9 @@ export class PlayerComponent implements OnInit {
   }
 
   openFile(file, index) {
-    this.currentFile = { index, file };
+    this.cloudService.currentFile = { index, file };
     this.audioService.stop();
-    this.playStream(file.url);
+    this.playStream(file.musicURL);
   }
 
   pause() {
@@ -53,6 +42,8 @@ export class PlayerComponent implements OnInit {
 
   play() {
     this.audioService.play();
+    console.log(this.cloudService.files);
+    console.log(this.cloudService.currentFile);
   }
 
   stop() {
@@ -60,24 +51,24 @@ export class PlayerComponent implements OnInit {
   }
 
   next() {
-    const index = this.currentFile.index + 1;
-    const file = this.files[index];
+    const index = this.cloudService.currentFile.index + 1;
+    const file = this.cloudService.files[index];
     this.openFile(file, index);
   }
 
   previous() {
-    const index = this.currentFile.index - 1;
-    const file = this.files[index];
+    const index = this.cloudService.currentFile.index - 1;
+    const file = this.cloudService.files[index];
     this.openFile(file, index);
   }
 
   isFirstPlaying() {
-    return this.currentFile.index === 0;
+    return this.cloudService.currentFile.index === 0;
   }
 
   isLastPlaying() {
-    if (this.files !== null) {
-      return this.currentFile.index === this.files.length - 1;
+    if (this.cloudService.files !== null) {
+      return this.cloudService.currentFile.index === this.cloudService.files.length - 1;
     }
   }
 

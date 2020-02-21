@@ -7,6 +7,10 @@ import { MusicData } from '../models/music-data.model';
 })
 export class CloudService {
 
+  index = -1;
+  currentFile: any = {};
+  files: Array<any> = [];
+
   constructor(
     private db: AngularFirestore
   ) { }

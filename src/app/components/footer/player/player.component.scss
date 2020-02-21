@@ -7,8 +7,17 @@ nb-icon {
 nb-card-body {
   padding: inherit;
   text-align: justify;
+  // display: flex;
+  // flex-direction: row;
 }
 
 .mid {
   margin: 10px;
+}
+
+.player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
 }

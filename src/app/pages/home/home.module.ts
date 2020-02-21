@@ -4,13 +4,23 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { TrackComponent } from './track/track.component';
+import {
+  NbCardModule,
+  NbUserModule,
+  NbListModule,
+  NbIconModule
+} from '@nebular/theme';
 
 
 @NgModule({
   declarations: [HomeComponent, TrackComponent],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    NbCardModule,
+    NbUserModule,
+    NbListModule,
+    NbIconModule
   ]
 })
 export class HomeModule { }

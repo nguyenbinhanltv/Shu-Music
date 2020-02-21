@@ -1,2 +1,11 @@
-<p>home works!</p>
-<app-track></app-track>
+<nb-card [size]="'tiny'">
+  <nb-card-body>
+    <nb-list listenWindowScroll="true">
+      <nb-list-item class="tracks" *ngFor="let file of files">
+
+          <app-track [file]="file"></app-track>
+
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

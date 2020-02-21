@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CloudService } from 'src/app/services/cloud.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  files: Array<any> = null;
+
+  constructor(
+    private cloudService: CloudService
+  ) {
+    this.cloudService.getMusicData().subscribe(data => {
+      this.files = data.map(e => {
+        return {
+          name: e.payload.doc.get('name'),
+          singer: e.payload.doc.get('singer'),
+          artist: e.payload.doc.get('artist'),
+          musicURL: e.payload.doc.get('musicURL'),
+          imgURL: e.payload.doc.get('imgURL'),
+          musicPath: e.payload.doc.get('musicPath'),
+          imgPath: e.payload.doc.get('imgPath')
+        };
+      });
+    });
+  }
 
   ngOnInit() {
   }

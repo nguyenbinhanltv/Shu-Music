@@ -1,0 +1,15 @@
+nb-card-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  nb-user {
+    cursor: pointer;
+  }
+
+  nb-icon {
+    cursor: pointer;
+    margin-right: 10px;
+  }
+}
