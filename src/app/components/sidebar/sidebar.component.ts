@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
 
+  private alive = true;
   items = [
     {
       title: 'Home',
@@ -50,6 +51,10 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.alive = false;
   }
 
 }

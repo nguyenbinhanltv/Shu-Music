@@ -22,6 +22,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginDialogComponent } from './dialog/login-dialog/login-dialog.component';
 import { FooterComponent } from './footer/footer.component';
 import { PlayerComponent } from './footer/player/player.component';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { PlayerComponent } from './footer/player/player.component';
     NbIconModule,
     NbListModule,
     NbProgressBarModule,
-    NbInputModule
+    NbInputModule,
+    MatSliderModule
   ],
   entryComponents: [LoginDialogComponent],
   exports: [

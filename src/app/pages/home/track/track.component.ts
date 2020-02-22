@@ -26,9 +26,9 @@ export class TrackComponent implements OnInit {
   }
 
   openFile(file, index) {
+    this.cloudService.files.unshift(this.file);
     index = index + 1;
     this.cloudService.currentFile = { index, file };
-    this.cloudService.files.push(this.file);
     this.audioService.stop();
     this.playStream(file.musicURL);
   }

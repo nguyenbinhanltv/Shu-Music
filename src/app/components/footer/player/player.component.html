@@ -1,29 +1,56 @@
-<div class="player">
-  <nb-card-body>
+<div>
+  <nb-card-body class="player">
 
-    <div>
-      ImgMusic Here
+    <div  *ngIf="cloudService.currentFile.file !== undefined" class="current-song">
+      <nb-user shape="rectangle" size="large"
+        name={{cloudService.currentFile.file.name}}
+        title={{cloudService.currentFile.file.artist}}
+        picture={{cloudService.currentFile.file.imgURL}}>
+      </nb-user>
     </div>
 
     <div>
-      <button nbButton [disabled]="isFirstPlaying()" (click)="previous()" status="basic">
+      <button nbButton [disabled]="isFirstPlaying()" (click)="previous()" status="primary" class="button">
         <nb-icon icon="skip-back-outline"></nb-icon>
       </button>
-      <button nbButton (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing" class="mid" status="basic">
+
+      <button nbButton (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing" class="mid" status="primary" shape="round">
         <nb-icon icon="play-circle-outline"></nb-icon>
       </button>
-      <button nbButton (click)="pause()" *ngIf="state?.playing" class="mid" status="basic">
+
+      <button nbButton (click)="pause()" *ngIf="state?.playing" class="mid" status="primary" shape="round">
         <nb-icon icon="pause-circle-outline"></nb-icon>
       </button>
-      <button nbButton [disabled]="isLastPlaying()" (click)="next()" status="basic">
+
+      <button nbButton [disabled]="isLastPlaying()" (click)="next()" status="primary" class="button">
         <nb-icon icon="skip-forward-outline"></nb-icon>
       </button>
     </div>
 
-    <div>
+    <div class="time-slider">
       {{state?.readableCurrentTime}}
-      <nb-progress-bar [value]="state?.currentTime" [size]="'tiny'"></nb-progress-bar>
+      <mat-slider
+        class="time-slider__child"
+        [min]="0"
+        [max]="state?.duration"
+        [step]="1"
+        [value]="state?.currentTime"
+        (input)="onSliderChangeEnd($event)"
+        [disabled]="state?.error || cloudService.currentFile.index === undefined">
+      </mat-slider>
       {{state?.readableDuration}}
+    </div>
+
+    <div class="volume-slider">
+      <nb-icon icon="volume-up-outline"></nb-icon>
+      <mat-slider
+        class="volume-slider__child"
+        [min]="0"
+        [max]="100"
+        [value]="100"
+        [step]="1"
+        >
+      </mat-slider>
     </div>
 
   </nb-card-body>

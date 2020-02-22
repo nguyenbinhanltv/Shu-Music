@@ -8,7 +8,7 @@ import { CloudService } from 'src/app/services/cloud.service';
 })
 export class HomeComponent implements OnInit {
 
-  files: Array<any> = null;
+  files: Array<any> = [];
 
   constructor(
     private cloudService: CloudService
