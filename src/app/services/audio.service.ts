@@ -10,7 +10,7 @@ import { StreamState } from '../models/stream-state.model';
 export class AudioService {
 
   private stop$ = new Subject();
-  private audioObj = new Audio();
+  public audioObj = new Audio();
   audioEvents = [
     'ended', 'error', 'play', 'playing', 'pause', 'timeupdate', 'canplay', 'loadedmetadata', 'loadstart'
   ];

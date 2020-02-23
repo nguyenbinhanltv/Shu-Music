@@ -75,4 +75,8 @@ export class PlayerComponent implements OnInit {
   onSliderChangeEnd(change) {
     this.audioService.seekTo(change.value);
   }
+
+  onSliderChangeVolume(event) {
+    this.audioService.audioObj.volume = event.value;
+  }
 }
