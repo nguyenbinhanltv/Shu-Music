@@ -3,19 +3,15 @@
 
     <h3>{{files.length}} New Song</h3>
 
-    <nb-card listenWindowScroll="true">
-      <nb-card-body>
-        <div class="card-row">
-          <div class="card-col" *ngFor="let file of files">
-            <nb-card size="tiny">
-              <nb-card-body class="new-item">
-
-              </nb-card-body>
-            </nb-card>
-          </div>
-        </div>
-      </nb-card-body>
-    </nb-card>
+    <div class="card-row">
+      <div class="card-col" *ngFor="let file of headerFiles">
+        <nb-card size="tiny">
+          <nb-card-body class="new-item">
+            <img [src]="file.imgURL" class="header-image">
+          </nb-card-body>
+        </nb-card>
+      </div>
+    </div>
 
     <nb-list listenWindowScroll="true" class="list-items">
       <nb-list-item class="tracks" *ngFor="let file of files">

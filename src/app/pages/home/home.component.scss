@@ -20,7 +20,7 @@ app-track {
 }
 
 .card-col {
-  flex: 1 0 calc(20% - 1rem);
+  flex: 1 0 calc(10% - 1rem);
   margin: 1rem;
 }
 
@@ -30,4 +30,11 @@ app-track {
 
 .list-items {
   width: 40%;
+}
+
+.header-image {
+  width: 100%;
+  height: 98%;
+  border-radius: 0.15625rem;
+  cursor: pointer;
 }

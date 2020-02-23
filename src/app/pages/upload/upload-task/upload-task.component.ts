@@ -15,9 +15,6 @@ export class UploadTaskComponent implements OnInit {
 
   @Input() musicFile: File;
   @Input() imgFile: File;
-  @Input() name: string;
-  @Input() singer: string;
-  @Input() artist: string;
 
   task: AngularFireUploadTask;
 
@@ -68,9 +65,9 @@ export class UploadTaskComponent implements OnInit {
           this.songURL = await musicRef.getDownloadURL().toPromise();
           this.imgURL = await imgRef.getDownloadURL().toPromise();
           this.cloudService.updateMusicData({
-            name: this.name,
-            singer: this.singer,
-            artist: this.artist,
+            name: this.cloudService.name.value,
+            singer: this.cloudService.singer.value,
+            artist: this.cloudService.artist.value,
             musicURL: this.songURL,
             imgURL: this.imgURL,
             musicPath: `${musicPath}`,
@@ -78,6 +75,9 @@ export class UploadTaskComponent implements OnInit {
           } as MusicData).then(() => {
             this.imgFile = null;
             this.musicFile = null;
+            this.cloudService.name.reset();
+            this.cloudService.singer.reset();
+            this.cloudService.artist.reset();
           });
         }),
       );

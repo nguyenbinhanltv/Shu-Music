@@ -9,6 +9,7 @@ import { CloudService } from 'src/app/services/cloud.service';
 export class HomeComponent implements OnInit {
 
   files: Array<any> = [];
+  headerFiles: Array<any> = [];
 
   constructor(
     private cloudService: CloudService
@@ -25,6 +26,11 @@ export class HomeComponent implements OnInit {
           imgPath: e.payload.doc.get('imgPath')
         };
       });
+
+      for (let i = this.files.length - 1; i > this.files.length - 7; i--) {
+        this.headerFiles.push(this.files[i]);
+      }
+      console.log(this.headerFiles);
     });
   }
 
