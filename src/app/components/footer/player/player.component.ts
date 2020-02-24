@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StreamState } from 'src/app/models/stream-state.model';
 import { AudioService } from 'src/app/services/audio.service';
 import { CloudService } from 'src/app/services/cloud.service';
@@ -13,7 +13,7 @@ export class PlayerComponent implements OnInit {
   state: StreamState;
 
   constructor(
-    private audioService: AudioService,
+    protected audioService: AudioService,
     protected cloudService: CloudService
   ) {
     this.audioService.getState().subscribe(state => {
@@ -42,8 +42,6 @@ export class PlayerComponent implements OnInit {
 
   play() {
     this.audioService.play();
-    console.log(this.cloudService.files);
-    console.log(this.cloudService.currentFile);
   }
 
   stop() {

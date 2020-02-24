@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CloudService } from 'src/app/services/cloud.service';
+import { AudioService } from 'src/app/services/audio.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ export class HomeComponent implements OnInit {
   headerFiles: Array<any> = [];
 
   constructor(
-    private cloudService: CloudService
+    protected cloudService: CloudService,
+    protected audioService: AudioService
   ) {
     this.cloudService.getMusicData().subscribe(data => {
       this.files = data.map(e => {
@@ -27,11 +29,24 @@ export class HomeComponent implements OnInit {
         };
       });
 
-      for (let i = this.files.length - 1; i > this.files.length - 7; i--) {
+      for (let i = this.files.length - 1; i > this.files.length - 6; i--) {
         this.headerFiles.push(this.files[i]);
       }
-      console.log(this.headerFiles);
     });
+  }
+
+  playStream(url) {
+    this.audioService.playStream(url).subscribe(events => {
+      // listening for fun here
+    });
+  }
+
+  openFile(file, index) {
+    this.cloudService.files.unshift(file);
+    index = index + 1;
+    this.cloudService.currentFile = { index, file };
+    this.audioService.stop();
+    this.playStream(file.musicURL);
   }
 
   ngOnInit() {

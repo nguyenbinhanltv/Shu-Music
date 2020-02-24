@@ -13,12 +13,12 @@
     width: 30vw;
     font-weight: 200;
     height: 30vh;
-    border: 2px dashed #ffffff;
+    border: 2px dashed black;
     border-radius: 5px;
     margin: 10px 0;
 
     &.hovering {
-        border: 2px solid #ffffff;
+        border: 2px solid black;
         color: #dadada !important;
     }
 
