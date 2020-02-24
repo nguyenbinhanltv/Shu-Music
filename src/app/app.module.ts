@@ -14,11 +14,12 @@ import {
   NbMenuModule,
   NbIconModule,
   NbDialogModule,
+  NbToastrModule,
+  NbToastrService
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ComponentsModule } from './components/components.module';
 import { environment } from 'src/environments/environment';
-import { DropzoneDirective } from './directives/dropzone.directive';
 
 @NgModule({
   declarations: [
@@ -36,11 +37,12 @@ import { DropzoneDirective } from './directives/dropzone.directive';
     NbMenuModule.forRoot(),
     NbIconModule,
     NbDialogModule.forRoot(),
+    NbToastrModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [NbSidebarService],
+  providers: [NbSidebarService, NbToastrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

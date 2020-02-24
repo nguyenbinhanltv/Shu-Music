@@ -7,28 +7,20 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
 
-  private alive = true;
   items = [
     {
       title: 'Home',
       icon: 'home-outline',
-      link: ['home']
+      link: ['home'],
     },
     {
       title: 'Library',
       icon: 'book-outline',
       link: ['library'],
-      children: [
-        {
-          title: 'First Library',
-          icon: 'book-open-outline',
-        }
-      ],
     },
     {
       title: 'Playlist',
-      icon: 'list-outline',
-      link: ['playlist'],
+      icon: 'headphones-outline',
       children: [
         {
           title: 'New Playlist',
@@ -37,7 +29,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
         {
           title: 'Liked Song',
           icon: 'heart-outline',
-          link: ['liked-song']
+          link: ['library/liked-song']
         },
       ],
     },
@@ -54,7 +46,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.alive = false;
   }
 
 }

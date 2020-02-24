@@ -19,6 +19,8 @@ export class PlayerComponent implements OnInit {
     this.audioService.getState().subscribe(state => {
       this.state = state;
     });
+
+    this.audioService.audioObj.addEventListener('ended', () => this.next());
   }
 
   ngOnInit() {

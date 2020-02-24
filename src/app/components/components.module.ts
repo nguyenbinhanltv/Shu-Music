@@ -12,7 +12,10 @@ import {
   NbProgressBarModule,
   NbIconModule,
   NbListModule,
-  NbInputModule
+  NbInputModule,
+  NbToastrModule,
+  NbToastrService,
+  NbTooltipModule
 } from '@nebular/theme';
 import { SearchComponent } from './header/search/search.component';
 import { LogoComponent } from './header/logo/logo.component';
@@ -51,7 +54,8 @@ import { MatSliderModule } from '@angular/material/slider';
     NbListModule,
     NbProgressBarModule,
     NbInputModule,
-    MatSliderModule
+    MatSliderModule,
+    NbTooltipModule
   ],
   entryComponents: [LoginDialogComponent],
   exports: [
