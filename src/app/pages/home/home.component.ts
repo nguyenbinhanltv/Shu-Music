@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
     this.cloudService.getMusicData().subscribe(data => {
       this.files = data.map(e => {
         return {
+          id: e.payload.doc.id,
           name: e.payload.doc.get('name'),
           singer: e.payload.doc.get('singer'),
           artist: e.payload.doc.get('artist'),

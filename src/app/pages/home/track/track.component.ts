@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AudioService } from 'src/app/services/audio.service';
 import { CloudService } from 'src/app/services/cloud.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-track',
@@ -10,11 +12,13 @@ import { CloudService } from 'src/app/services/cloud.service';
 export class TrackComponent implements OnInit {
 
   @Input() file;
+  userData: Array<any> = [];
 
   constructor(
     private audioService: AudioService,
-    public cloudService: CloudService
-  ) { }
+    protected cloudService: CloudService,
+    protected authService: AuthService
+  ) {}
 
   ngOnInit() {
   }
@@ -31,5 +35,9 @@ export class TrackComponent implements OnInit {
     this.cloudService.currentFile = { index, file };
     this.audioService.stop();
     this.playStream(file.musicURL);
+  }
+
+  addToLikedSong(file, user) {
+    return this.cloudService.updateUserData(user, file);
   }
 }

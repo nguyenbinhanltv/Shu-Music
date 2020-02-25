@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MusicData } from '../models/music-data.model';
 import { FormControl, Validators } from '@angular/forms';
+import { Playlist } from '../models/playlist.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,15 @@ export class CloudService {
 
   getMusicData() {
     return this.db.collection('files').snapshotChanges();
+  }
+
+  getUserData() {
+    return this.db.collection('users').snapshotChanges();
+  }
+
+  updateUserData(user, song) {
+    const userRef = this.db.collection(`playlist`);
+    return userRef.add(song);
   }
 
   updateMusicData({name, artist, singer, musicURL, musicPath, imgURL, imgPath}: MusicData) {
