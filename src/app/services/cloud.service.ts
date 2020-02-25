@@ -25,13 +25,13 @@ export class CloudService {
     return this.db.collection('files').snapshotChanges();
   }
 
-  getUserData() {
-    return this.db.collection('users').snapshotChanges();
+  getLikedSongData(user) {
+    return this.db.doc(`users/${user.uid}`).collection('likedsong').snapshotChanges();
   }
 
-  updateUserData(user, song) {
-    const userRef = this.db.collection(`playlist`);
-    return userRef.add(song);
+  updateLikedSongData(user, file) {
+    const userRef = this.db.firestore.doc(`users/${user.uid}`).collection('likedsong');
+    return userRef.add(file);
   }
 
   updateMusicData({name, artist, singer, musicURL, musicPath, imgURL, imgPath}: MusicData) {

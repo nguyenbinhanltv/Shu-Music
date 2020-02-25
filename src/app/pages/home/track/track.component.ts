@@ -12,13 +12,23 @@ import { async } from '@angular/core/testing';
 export class TrackComponent implements OnInit {
 
   @Input() file;
-  userData: Array<any> = [];
+  likedSongFile: Array<any> = [];
+  user: any;
 
   constructor(
     private audioService: AudioService,
     protected cloudService: CloudService,
     protected authService: AuthService
-  ) {}
+  ) {
+    this.authService.user$.subscribe(userData => {
+      this.user = userData;
+      this.cloudService.getLikedSongData(this.user).subscribe(data => {
+        this.likedSongFile = data.map(e => {
+          return e.payload.doc.data();
+        });
+      });
+    });
+  }
 
   ngOnInit() {
   }
@@ -30,14 +40,23 @@ export class TrackComponent implements OnInit {
   }
 
   openFile(file, index) {
-    this.cloudService.files.unshift(this.file);
+    this.cloudService.files.unshift(file);
     index = index + 1;
     this.cloudService.currentFile = { index, file };
     this.audioService.stop();
     this.playStream(file.musicURL);
   }
 
-  addToLikedSong(file, user) {
-    return this.cloudService.updateUserData(user, file);
+  addToLikedSong(user, file) {
+    return this.cloudService.updateLikedSongData(user, file);
+  }
+
+  isInLikedSong(file) {
+    for (const song of this.likedSongFile) {
+      if (file.id === song.id) {
+        return true;
+      }
+    }
+    return false;
   }
 }

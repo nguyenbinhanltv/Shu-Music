@@ -21,6 +21,7 @@ import {
     NbUserModule,
     NbListModule,
     NbIconModule
-  ]
+  ],
+  exports: [TrackComponent]
 })
 export class HomeModule { }
