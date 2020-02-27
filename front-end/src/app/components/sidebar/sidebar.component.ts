@@ -19,6 +19,11 @@ export class SidebarComponent implements OnInit {
       link: ['home'],
     },
     {
+      title: 'Search',
+      icon: 'search-outline',
+      link: ['search'],
+    },
+    {
       title: 'Library',
       icon: 'book-outline',
       link: ['library'],
@@ -54,7 +59,7 @@ export class SidebarComponent implements OnInit {
         this.menuItems.forEach(item => item.hidden = false);
       } else {
         this.menuItems.forEach(item => {
-          if (item.title === 'Home') {
+          if (item.title === 'Home' || item.title === 'Search') {
             item.hidden = false;
           } else {
             item.hidden = true;
