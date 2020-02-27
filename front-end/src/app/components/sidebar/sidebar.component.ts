@@ -11,6 +11,7 @@ import { NbMenuService } from '@nebular/theme';
 export class SidebarComponent implements OnInit {
 
   user: any;
+
   menuItems = [
     {
       title: 'Home',
@@ -21,10 +22,12 @@ export class SidebarComponent implements OnInit {
       title: 'Library',
       icon: 'book-outline',
       link: ['library'],
+      hidden: true,
     },
     {
       title: 'Playlist',
       icon: 'headphones-outline',
+      hidden: true,
       children: [
         {
           title: 'Liked Song',
@@ -36,16 +39,28 @@ export class SidebarComponent implements OnInit {
     {
       title: 'Upload music',
       icon: 'cloud-upload-outline',
-      link: ['upload']
+      link: ['upload'],
+      hidden: true,
     }
   ];
 
   constructor(
-    private authService: AuthService,
-    private menuService: NbMenuService
+    private authService: AuthService
   ) {
     this.authService.user$.subscribe(userData => {
       this.user = userData;
+
+      if (this.user !== null) {
+        this.menuItems.forEach(item => item.hidden = false);
+      } else {
+        this.menuItems.forEach(item => {
+          if (item.title === 'Home') {
+            item.hidden = false;
+          } else {
+            item.hidden = true;
+          }
+        });
+      }
     });
   }
 

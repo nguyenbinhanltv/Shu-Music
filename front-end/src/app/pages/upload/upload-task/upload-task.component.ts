@@ -34,7 +34,12 @@ export class UploadTaskComponent implements OnInit {
   }
 
   startUpload() {
-    if (this.imgFile !== null && this.musicFile !== null) {
+    if (
+        this.imgFile !== null &&
+        this.musicFile !== null &&
+        this.cloudService.name.value !== '' &&
+        this.cloudService.artist.value !== '' &&
+        this.cloudService.singer.value !== '') {
       // The storage path
       const musicPath = `music/${Date.now()}_${this.musicFile.name}`;
       const imgPath = `images/${Date.now()}_${this.imgFile.name}`;
