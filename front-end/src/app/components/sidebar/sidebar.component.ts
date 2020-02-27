@@ -1,13 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { CloudService } from 'src/app/services/cloud.service';
+import { NbMenuService } from '@nebular/theme';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+export class SidebarComponent implements OnInit {
 
-  items = [
+  user: any;
+  menuItems = [
     {
       title: 'Home',
       icon: 'home-outline',
@@ -23,10 +27,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
       icon: 'headphones-outline',
       children: [
         {
-          title: 'New Playlist',
-          icon: 'plus-square-outline'
-        },
-        {
           title: 'Liked Song',
           icon: 'heart-outline',
           link: ['library/liked-song']
@@ -40,12 +40,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private menuService: NbMenuService
+  ) {
+    this.authService.user$.subscribe(userData => {
+      this.user = userData;
+    });
+  }
 
   ngOnInit() {
   }
-
-  ngOnDestroy() {
-  }
-
 }
