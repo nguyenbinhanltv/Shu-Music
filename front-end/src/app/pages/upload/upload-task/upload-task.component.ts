@@ -85,4 +85,8 @@ export class UploadTaskComponent implements OnInit {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
 
+  getInt(value) {
+    return Number.parseInt(value, 10);
+  }
+
 }
