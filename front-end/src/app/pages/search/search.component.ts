@@ -51,7 +51,6 @@ export class SearchComponent implements OnInit {
         const singer = file.singer.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
         if (name || artist || singer) {
           this.searchFiles.push(file);
-          console.log(this.searchFiles);
         }
       }
     });
@@ -68,7 +67,6 @@ export class SearchComponent implements OnInit {
         const singer = file.singer.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
         if (name || artist || singer) {
           this.searchFiles.push(file);
-          console.log(this.searchFiles);
         }
       }
     });

@@ -10,11 +10,10 @@ import { filter, map } from 'rxjs/operators';
 export class ThemeComponent implements OnInit {
   items = [
     { title: 'Default' },
-    { title: 'Dark' },
-    { title: 'Cosmic' }
+    { title: 'Dark' }
   ];
 
-  selectedItem = 'Cosmic';
+  selectedItem = 'Default';
 
   constructor(
     private nbMenuService: NbMenuService,

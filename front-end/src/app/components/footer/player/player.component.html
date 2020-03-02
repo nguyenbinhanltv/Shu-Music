@@ -4,7 +4,7 @@
     <div  *ngIf="cloudService.currentFile.file !== undefined" class="current-song">
       <nb-user shape="rectangle" size="large"
         name={{cloudService.currentFile.file.name}}
-        title={{cloudService.currentFile.file.artist}}
+        title={{cloudService.currentFile.file.singer}}
         picture={{cloudService.currentFile.file.imgURL}}>
       </nb-user>
     </div>
