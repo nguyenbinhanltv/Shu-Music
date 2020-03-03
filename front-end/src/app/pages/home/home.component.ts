@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CloudService } from 'src/app/services/cloud.service';
 import { AudioService } from 'src/app/services/audio.service';
 
@@ -7,7 +7,7 @@ import { AudioService } from 'src/app/services/audio.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   files: Array<any> = [];
   headerFiles: Array<any> = [];
@@ -16,7 +16,18 @@ export class HomeComponent implements OnInit {
     public cloudService: CloudService,
     public audioService: AudioService
   ) {
-    this.cloudService.getMusicData().subscribe(data => {
+    this.getMusicData();
+  }
+
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.getMusicData().unsubscribe();
+  }
+
+  getMusicData() {
+    return this.cloudService.getMusicData().subscribe(data => {
       this.files = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -48,9 +59,6 @@ export class HomeComponent implements OnInit {
     this.cloudService.currentFile = { index, file };
     this.audioService.stop();
     this.playStream(file.musicURL);
-  }
-
-  ngOnInit() {
   }
 
 }

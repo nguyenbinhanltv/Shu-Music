@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CloudService } from 'src/app/services/cloud.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { AudioService } from 'src/app/services/audio.service';
@@ -8,7 +8,7 @@ import { AudioService } from 'src/app/services/audio.service';
   templateUrl: './liked-song.component.html',
   styleUrls: ['./liked-song.component.scss']
 })
-export class LikedSongComponent implements OnInit {
+export class LikedSongComponent implements OnInit, OnDestroy {
 
   likedSongFile: Array<any> = [];
   user: any;
@@ -18,17 +18,14 @@ export class LikedSongComponent implements OnInit {
     protected authService: AuthService,
     protected audioService: AudioService
   ) {
-    this.authService.user$.subscribe(userData => {
-      this.user = userData;
-      if (this.user) {
-        this.cloudService.getLikedSongData(this.user).subscribe(data => {
-          this.likedSongFile = data.map(e => e.payload.doc.data());
-        });
-      }
-    });
+    this.getUserData();
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.getUserData().unsubscribe();
   }
 
   playStream(url) {
@@ -50,6 +47,17 @@ export class LikedSongComponent implements OnInit {
       });
       this.playStream(this.cloudService.files[0].musicURL);
     }
+  }
+
+  getUserData() {
+    return this.authService.user$.subscribe(userData => {
+      this.user = userData;
+      if (this.user) {
+        this.cloudService.getLikedSongData(this.user).subscribe(data => {
+          this.likedSongFile = data.map(e => e.payload.doc.data());
+        });
+      }
+    });
   }
 
 }

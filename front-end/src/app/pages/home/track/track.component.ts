@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { AudioService } from 'src/app/services/audio.service';
 import { CloudService } from 'src/app/services/cloud.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,7 +9,7 @@ import { async } from '@angular/core/testing';
   templateUrl: './track.component.html',
   styleUrls: ['./track.component.scss']
 })
-export class TrackComponent implements OnInit {
+export class TrackComponent implements OnInit, OnDestroy {
 
   @Input() file;
   likedSongFile: Array<any> = [];
@@ -21,7 +21,18 @@ export class TrackComponent implements OnInit {
     public cloudService: CloudService,
     public authService: AuthService
   ) {
-    this.authService.user$.subscribe(userData => {
+    this.getLikedSongData();
+  }
+
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.getLikedSongData().unsubscribe();
+  }
+
+  getLikedSongData() {
+    return this.authService.user$.subscribe(userData => {
       this.user = userData;
       if (this.user) {
         this.cloudService.getLikedSongData(this.user).subscribe(data => {
@@ -35,9 +46,6 @@ export class TrackComponent implements OnInit {
         });
       }
     });
-  }
-
-  ngOnInit() {
   }
 
   playStream(url) {

@@ -16,14 +16,17 @@ export class PlayerComponent implements OnInit {
     public audioService: AudioService,
     public cloudService: CloudService
   ) {
-    this.audioService.getState().subscribe(state => {
-      this.state = state;
-    });
-
+    this.getState();
     this.audioService.audioObj.addEventListener('ended', () => this.next());
   }
 
   ngOnInit() {
+  }
+
+  getState() {
+    this.audioService.getState().subscribe(state => {
+      this.state = state;
+    });
   }
 
   playStream(url) {

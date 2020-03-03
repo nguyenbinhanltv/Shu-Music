@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NbSearchService } from '@nebular/theme';
 import { CloudService } from 'src/app/services/cloud.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
 
   files: Array<any> = [];
   searchFiles: Array<any> = [];
@@ -40,8 +40,13 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.searchByInput().unsubscribe();
+    this.searchBySubmit().unsubscribe();
+  }
+
   searchBySubmit() {
-    this.searchService.onSearchSubmit()
+    return this.searchService.onSearchSubmit()
     .subscribe(data => {
       this.searchFiles = [];
       this.value = data.term;
@@ -57,7 +62,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchByInput() {
-    this.searchService.onSearchInput()
+    return this.searchService.onSearchInput()
     .subscribe(data => {
       this.searchFiles = [];
       this.value = data.term;
