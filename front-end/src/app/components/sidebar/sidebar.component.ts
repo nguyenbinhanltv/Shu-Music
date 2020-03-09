@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CloudService } from 'src/app/services/cloud.service';
 import { NbMenuService } from '@nebular/theme';
@@ -8,7 +8,7 @@ import { NbMenuService } from '@nebular/theme';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
 
   user: any;
 
@@ -52,7 +52,18 @@ export class SidebarComponent implements OnInit {
   constructor(
     private authService: AuthService
   ) {
-    this.authService.user$.subscribe(userData => {
+    this.checkAuthIsLogin();
+  }
+
+  ngOnInit() {
+  }
+
+  ngOnDestroy(): void {
+    this.checkAuthIsLogin().unsubscribe();
+  }
+
+  checkAuthIsLogin() {
+    return this.authService.user$.subscribe(userData => {
       this.user = userData;
 
       if (this.user !== null) {
@@ -67,8 +78,5 @@ export class SidebarComponent implements OnInit {
         });
       }
     });
-  }
-
-  ngOnInit() {
   }
 }

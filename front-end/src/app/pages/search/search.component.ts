@@ -18,7 +18,22 @@ export class SearchComponent implements OnInit, OnDestroy {
     private cloudService: CloudService,
     private router: Router
   ) {
-    this.cloudService.getMusicData().subscribe(data => {
+    this.getMusicData();
+    this.searchBySubmit();
+    this.searchByInput();
+  }
+
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.getMusicData().unsubscribe();
+    this.searchByInput().unsubscribe();
+    this.searchBySubmit().unsubscribe();
+  }
+
+  getMusicData() {
+    return this.cloudService.getMusicData().subscribe(data => {
       this.files = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -32,17 +47,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         };
       });
     });
-
-    this.searchBySubmit();
-    this.searchByInput();
-  }
-
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {
-    this.searchByInput().unsubscribe();
-    this.searchBySubmit().unsubscribe();
   }
 
   searchBySubmit() {
