@@ -3,13 +3,15 @@ const puppeteer = require('puppeteer');
 //Merge 2 mảng album và musicFiles
 const mergeTwoArray = function (arr1, arr2) {
     for (let [index, item] of arr1.entries()) {
-        arr1[index].musicFile = arr2[index];
+        arr1[index].musicFile = arr2[index].musicFile;
+        arr1[index].lyric = arr2[index].lyric;
+        arr1[index].imageFile = arr2[index].imageFile;
     }
 
     return arr1;
 }
 
-//Get 1 page nhạc
+//Lấy 1 page nhạc
 const getAlbumMusic = (async (pageNumber, path) => {
 
     const browser = await puppeteer.launch();
@@ -31,7 +33,9 @@ const getAlbumMusic = (async (pageNumber, path) => {
                 title: title,
                 singer: singer,
                 link: link,
-                musicFile: ''
+                imageFile: '',
+                musicFile: '',
+                lyric: ''
             });
         });
         return links;
@@ -51,10 +55,25 @@ const getAlbumMusic = (async (pageNumber, path) => {
         await page.goto(link.link);
         let musicFile = await page.evaluate(() => {
             let musicFile = document.querySelector('.download_item');
-            if(musicFile) return musicFile.getAttribute('href');
+
+            //Lấy lyric nhạc
+            let lyricFile = document.getElementById('fulllyric');
+
+            //Lấy hình ảnh
+            let imageFile = document.getElementById('companion_cover');
+            if(lyricFile) lyricFile = lyricFile.innerHTML.replace(/\<br\>/g, '');
+            if(musicFile) musicFile = musicFile.getAttribute('href');
+            if(imageFile) imageFile = imageFile.querySelector('img').getAttribute('src');
+
+            return {
+                imageFile: imageFile,
+                musicFile: musicFile,
+                lyric: lyricFile
+            };
         });
         musicFiles.push(musicFile);
     }
+
 
     await browser.close();
 

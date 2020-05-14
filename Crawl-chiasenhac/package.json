@@ -1,0 +1,19 @@
+{
+  "name": "crawl-chiasenhac",
+  "version": "1.0.0",
+  "description": "",
+  "main": "getAlbumMusic.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "y"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^3.0.4",
+    "puppeteer-core": "^3.0.4"
+  }
+}
