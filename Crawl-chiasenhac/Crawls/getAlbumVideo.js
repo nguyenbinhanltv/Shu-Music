@@ -1,10 +1,5 @@
 const puppeteer = require('puppeteer');
 
-const path = (page) => `https://chiasenhac.vn/hd/video/v-video.html?tab=video-2020&page=${page}`;
-const pageNumber = 1;
-
-const typeVideo = 'Video Việt Nam';
-
 //Merge 2 mảng album và videoFiles
 const mergeTwoArray = function (arr1, arr2) {
     for (let [index, item] of arr1.entries()) {
@@ -89,17 +84,4 @@ const getAlbumVideo = (async (pageNumber, path) => {
     }
 });
 
-getAlbumVideo(pageNumber, path)
-.then(data => {
-
-    const result = mergeTwoArray(data.album, data.videoFiles);
-
-    console.log(result);
-
-    Promise.resolve({
-        type: typeVideo,
-        page: pageNumber,
-        album: result
-    });
-})
-.catch(err => Promise.reject(err));
+module.exports = { getAlbumVideo, mergeTwoArray };
