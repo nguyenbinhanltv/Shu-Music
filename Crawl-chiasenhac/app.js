@@ -5,7 +5,7 @@ const crawlData = require('./Crawls/index');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://noobility-80bd0.firebaseapp.com'
+    databaseURL: 'https://shu-audio.firebaseio.com'
 });
 
 //CRUD firestore
