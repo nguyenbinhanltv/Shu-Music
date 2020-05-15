@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/Shu-Audio",
+    "public": "dist/Shu-Music",
     "ignore": [
       "firebase.json",
       "**/.*",

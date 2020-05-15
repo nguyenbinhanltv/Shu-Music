@@ -1,12 +1,13 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: 'AIzaSyARX3wgwY-5CbRMYKauPFYWrXvzBPekcMY',
-    authDomain: 'shu-audio.firebaseapp.com',
-    databaseURL: 'https://shu-audio.firebaseio.com',
-    projectId: 'shu-audio',
-    storageBucket: 'shu-audio.appspot.com',
-    messagingSenderId: '1096938990836',
-    appId: '1:1096938990836:web:05b54912d8c431b770c2a1'
+    apiKey: 'AIzaSyDznhZn6_G-c7KjbI7dac5JGplcnr6EzSw',
+    authDomain: 'shu-music.firebaseapp.com',
+    databaseURL: 'https://shu-music.firebaseio.com',
+    projectId: 'shu-music',
+    storageBucket: 'shu-music.appspot.com',
+    messagingSenderId: '138777979494',
+    appId: '1:138777979494:web:5a8bdbe037767445a19ba7',
+    measurementId: 'G-M98KBFGYEM'
   }
 };

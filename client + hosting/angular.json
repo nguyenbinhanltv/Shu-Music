@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Shu-Audio": {
+    "Shu-Music": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Shu-Audio",
+            "outputPath": "dist/Shu-Music",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Shu-Audio:build"
+            "browserTarget": "Shu-Music:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Shu-Audio:build:production"
+              "browserTarget": "Shu-Music:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Shu-Audio:build"
+            "browserTarget": "Shu-Music:build"
           }
         },
         "test": {
@@ -114,18 +114,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Shu-Audio:serve"
+            "devServerTarget": "Shu-Music:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Shu-Audio:serve:production"
+              "devServerTarget": "Shu-Music:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "Shu-Audio",
+  "defaultProject": "Shu-Music",
   "cli": {
     "analytics": "8bc53ef4-2252-4c33-b042-abca4a801bd1"
   }
