@@ -8,4 +8,6 @@ admin.initializeApp({
     databaseURL: 'https://noobility-80bd0.firebaseapp.com'
 });
 
-let db = admin.firestore();
+//CRUD firestore
+const CRUDMusic = require('./CRUD-music');
+const CRUDVideo = require('./CRUD-video');

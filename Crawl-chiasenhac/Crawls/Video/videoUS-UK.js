@@ -4,15 +4,16 @@ const getAlbumVideo = require('../getAlbumVideo');
 
 const pathVideoUSUK = (page) => `https://chiasenhac.vn/hd/video/us-video.html?tab=video-2020&page=${page}`;
 const typeVideo = 'Video US-UK';
+const status = `200, Đưa tay đây nào........`;
 
 const result = (pageNumber) => getAlbumVideo.getAlbumVideo(pageNumber, pathVideoUSUK)
     .then(data => {
 
         const result = getAlbumVideo.mergeTwoArray(data.album, data.videoFiles);
 
-        console.log(result);
+        console.log(status);
 
-        Promise.resolve({
+        return ({
             type: typeVideo,
             page: pageNumber,
             album: result
