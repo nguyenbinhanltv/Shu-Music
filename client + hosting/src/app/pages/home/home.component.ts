@@ -9,42 +9,26 @@ import { AudioService } from 'src/app/services/audio.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  files: Array<any> = [];
+  files: any;
   headerFiles: Array<any> = [];
 
   constructor(
     public cloudService: CloudService,
     public audioService: AudioService
   ) {
-    this.getMusicData();
+    this.cloudService.getMusicData()
+    .then(async data => {
+      this.files = Object.values(await data)[0];
+      this.files = Object.values(this.files);
+      console.log(this.files);
+    }
+    );
   }
 
   ngOnInit() {
   }
 
   ngOnDestroy() {
-    this.getMusicData().unsubscribe();
-  }
-
-  getMusicData() {
-    return this.cloudService.getMusicData().subscribe(data => {
-      this.files = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          name: e.payload.doc.get('name'),
-          singer: e.payload.doc.get('singer'),
-          artist: e.payload.doc.get('artist'),
-          musicURL: e.payload.doc.get('musicURL'),
-          imgURL: e.payload.doc.get('imgURL'),
-          musicPath: e.payload.doc.get('musicPath'),
-          imgPath: e.payload.doc.get('imgPath')
-        };
-      });
-
-      for (let i = this.files.length - 1; i > this.files.length - 6; i--) {
-        this.headerFiles.push(this.files[i]);
-      }
-    });
   }
 
   playStream(url) {

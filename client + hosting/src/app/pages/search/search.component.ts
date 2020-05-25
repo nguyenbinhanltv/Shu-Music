@@ -18,7 +18,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     private cloudService: CloudService,
     private router: Router
   ) {
-    this.getMusicData();
     this.searchBySubmit();
     this.searchByInput();
   }
@@ -27,27 +26,26 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.getMusicData().unsubscribe();
     this.searchByInput().unsubscribe();
     this.searchBySubmit().unsubscribe();
   }
 
-  getMusicData() {
-    return this.cloudService.getMusicData().subscribe(data => {
-      this.files = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          name: e.payload.doc.get('name'),
-          singer: e.payload.doc.get('singer'),
-          artist: e.payload.doc.get('artist'),
-          musicURL: e.payload.doc.get('musicURL'),
-          imgURL: e.payload.doc.get('imgURL'),
-          musicPath: e.payload.doc.get('musicPath'),
-          imgPath: e.payload.doc.get('imgPath')
-        };
-      });
-    });
-  }
+  // getMusicData() {
+  //   return this.cloudService.getMusicData().subscribe(data => {
+  //     this.files = data.map(e => {
+  //       return {
+  //         id: e.payload.doc.id,
+  //         name: e.payload.doc.get('name'),
+  //         singer: e.payload.doc.get('singer'),
+  //         artist: e.payload.doc.get('artist'),
+  //         musicURL: e.payload.doc.get('musicURL'),
+  //         imgURL: e.payload.doc.get('imgURL'),
+  //         musicPath: e.payload.doc.get('musicPath'),
+  //         imgPath: e.payload.doc.get('imgPath')
+  //       };
+  //     });
+  //   });
+  // }
 
   searchBySubmit() {
     return this.searchService.onSearchSubmit()

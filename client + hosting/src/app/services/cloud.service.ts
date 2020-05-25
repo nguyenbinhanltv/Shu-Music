@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MusicData } from '../models/music-data.model';
 import { FormControl, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +19,19 @@ export class CloudService {
   artist = new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(2)]);
 
   constructor(
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private http: HttpClient
   ) { }
 
   getMusicData() {
-    return this.db.collection('files').snapshotChanges();
+    return new Promise(async (resolve, reject) => {
+      try {
+        const data = await this.http.get('https://shu-music-api.firebaseapp.com/api/v1/v-music').toPromise();
+        resolve(data);
+      } catch (err) {
+        reject(err);
+      }
+    });
   }
 
   getLikedSongData(user) {
