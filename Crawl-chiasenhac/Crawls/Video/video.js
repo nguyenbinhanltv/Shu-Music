@@ -4,6 +4,8 @@ const videoUSUK = require('./videoUS-UK');
 const videoHoa = require('./videoHoa');
 const videoNhat = require('./videoNhat');
 const videoNuocKhac = require('./videoNuocKhac');
+const videoLive = require('./videoLive');
+const videoPhap = require('./videoPhap');
 
 module.exports = {
     videoVietNam,
@@ -11,5 +13,7 @@ module.exports = {
     videoHoa,
     videoHan,
     videoNhat,
+    videoPhap,
+    videoLive,
     videoNuocKhac
 };
