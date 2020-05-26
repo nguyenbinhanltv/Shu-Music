@@ -59,7 +59,7 @@ export class TrackComponent implements OnInit, OnDestroy {
     index = index + 1;
     this.cloudService.currentFile = { index, file };
     this.audioService.stop();
-    this.playStream(file.musicURL);
+    this.playStream(file.musicFile);
   }
 
   addToLikedSong(user, file) {

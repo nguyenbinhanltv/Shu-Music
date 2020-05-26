@@ -14,10 +14,6 @@ export class CloudService {
   currentFile: any = {};
   files: Array<any> = [];
 
-  name = new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(2)]);
-  singer = new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(2)]);
-  artist = new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(2)]);
-
   constructor(
     private db: AngularFirestore,
     private http: HttpClient
@@ -43,20 +39,6 @@ export class CloudService {
   updateLikedSongData(user, file) {
     const userRef = this.db.firestore.doc(`users/${user.uid}`).collection('likedsong');
     return userRef.add(file);
-  }
-
-  updateMusicData({name, artist, singer, musicURL, musicPath, imgURL, imgPath}: MusicData) {
-    const dataRef = this.db.collection('files');
-    const data = {
-      name,
-      singer,
-      artist,
-      musicURL,
-      musicPath,
-      imgURL,
-      imgPath
-    };
-    return dataRef.add(data);
   }
 
   deleteLikeSongData(user, id) {

@@ -7,9 +7,9 @@
       (click)="openFile(file, cloudService.index)"
       shape="rectangle"
       size="medium"
-      name={{file.name}}
+      name={{file.title}}
       title={{file.singer}}
-      picture={{file.imgURL}}>
+      picture={{file.imageFile}}>
     </nb-user>
     <div *ngIf="authService.user$ | async as user">
       <button

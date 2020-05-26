@@ -5,16 +5,16 @@
 
     <div class="card-row" *ngFor="let file of files">
       <div class="card-col" *ngFor="let music of file.album">
-        <img [src]="music.imgFile" class="header-image box-shadow" (click)="openFile(music, cloudService.index)">
+        <img [src]="music.imageFile" class="header-image box-shadow" (click)="openFile(music, cloudService.index)">
       </div>
     </div>
 
     <h5>New Played</h5>
     <p> Postions</p>
 
-    <nb-list listenWindowScroll="true" class="list-items">
-      <nb-list-item class="tracks" *ngFor="let file of files">
-        <app-track [file]="file"></app-track>
+    <nb-list listenWindowScroll="true" class="list-items" *ngFor="let file of files">
+      <nb-list-item class="tracks" *ngFor="let music of file.album">
+        <app-track [file]="music"></app-track>
       </nb-list-item>
     </nb-list>
 
