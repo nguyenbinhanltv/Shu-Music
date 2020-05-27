@@ -40,12 +40,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
           link: ['library/liked-song']
         },
       ],
-    },
-    {
-      title: 'Upload music',
-      icon: 'cloud-upload-outline',
-      link: ['upload'],
-      hidden: true,
     }
   ];
 

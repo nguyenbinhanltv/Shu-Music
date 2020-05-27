@@ -17,7 +17,9 @@ export class PlayerComponent implements OnInit {
     public cloudService: CloudService
   ) {
     this.getState();
-    this.audioService.audioObj.addEventListener('ended', () => this.next());
+    if (this.cloudService.files.length > 1) {
+      this.audioService.audioObj.addEventListener('ended', () => this.next());
+    }
   }
 
   ngOnInit() {
@@ -38,7 +40,7 @@ export class PlayerComponent implements OnInit {
   openFile(file, index) {
     this.cloudService.currentFile = { index, file };
     this.audioService.stop();
-    this.playStream(file.musicURL);
+    this.playStream(file.musicFile);
   }
 
   pause() {

@@ -45,7 +45,7 @@ export class LikedSongComponent implements OnInit, OnDestroy {
       this.likedSongFile.forEach(file => {
         this.openFile(file, this.cloudService.index);
       });
-      this.playStream(this.cloudService.files[0].musicURL);
+      this.playStream(this.cloudService.files[0].musicFile);
     }
   }
 

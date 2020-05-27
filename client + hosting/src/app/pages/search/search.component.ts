@@ -13,6 +13,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   files: Array<any> = [];
   searchFiles: Array<any> = [];
   value: any;
+  typeMusic = 'v-music';
+
   constructor(
     private searchService: NbSearchService,
     private cloudService: CloudService,
@@ -20,6 +22,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) {
     this.searchBySubmit();
     this.searchByInput();
+    this.cloudService.getMusicData(this.typeMusic)
+    .then(async data => {
+      this.files = Object.values(await data)[0];
+      this.files = Object.values(this.files);
+    }
+    );
   }
 
   ngOnInit() {
@@ -30,34 +38,18 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchBySubmit().unsubscribe();
   }
 
-  // getMusicData() {
-  //   return this.cloudService.getMusicData().subscribe(data => {
-  //     this.files = data.map(e => {
-  //       return {
-  //         id: e.payload.doc.id,
-  //         name: e.payload.doc.get('name'),
-  //         singer: e.payload.doc.get('singer'),
-  //         artist: e.payload.doc.get('artist'),
-  //         musicURL: e.payload.doc.get('musicURL'),
-  //         imgURL: e.payload.doc.get('imgURL'),
-  //         musicPath: e.payload.doc.get('musicPath'),
-  //         imgPath: e.payload.doc.get('imgPath')
-  //       };
-  //     });
-  //   });
-  // }
-
   searchBySubmit() {
     return this.searchService.onSearchSubmit()
     .subscribe(data => {
       this.searchFiles = [];
       this.value = data.term;
       for (const file of this.files) {
-        const name = file.name.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
-        const artist = file.artist.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
-        const singer = file.singer.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
-        if (name || artist || singer) {
-          this.searchFiles.push(file);
+        for (const music of file.album) {
+          const name = music.title.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
+          const singer = music.singer.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
+          if (name || singer) {
+            this.searchFiles.push(music);
+          }
         }
       }
     });
@@ -69,11 +61,12 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.searchFiles = [];
       this.value = data.term;
       for (const file of this.files) {
-        const name = file.name.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
-        const artist = file.artist.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
-        const singer = file.singer.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
-        if (name || artist || singer) {
-          this.searchFiles.push(file);
+        for (const music of file.album) {
+          const name = music.title.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
+          const singer = music.singer.toLocaleLowerCase().includes(data.term.toLocaleLowerCase());
+          if (name || singer) {
+            this.searchFiles.push(music);
+          }
         }
       }
     });

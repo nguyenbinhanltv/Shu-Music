@@ -11,6 +11,7 @@ import {
   NbIconModule,
   NbTooltipModule
 } from '@nebular/theme';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {
     NbUserModule,
     NbListModule,
     NbIconModule,
-    NbTooltipModule
+    NbTooltipModule,
+    ComponentsModule,
   ],
   exports: [TrackComponent]
 })

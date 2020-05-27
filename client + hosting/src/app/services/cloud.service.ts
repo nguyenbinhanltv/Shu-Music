@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { MusicData } from '../models/music-data.model';
-import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +18,21 @@ export class CloudService {
     private http: HttpClient
   ) { }
 
-  getMusicData() {
+  getMusicData(typeMusic) {
     return new Promise(async (resolve, reject) => {
       try {
-        const data = await this.http.get('https://shu-music-api.firebaseapp.com/api/v1/v-music').toPromise();
+        const data = await this.http.get(environment.apiEndpoint + `${typeMusic}`).toPromise();
+        resolve(data);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  getVideoData(typeVideo) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const data = await this.http.get(environment.apiEndpoint + `${typeVideo}`).toPromise();
         resolve(data);
       } catch (err) {
         reject(err);

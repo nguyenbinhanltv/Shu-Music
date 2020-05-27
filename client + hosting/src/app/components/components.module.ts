@@ -27,6 +27,7 @@ import { FooterComponent } from './footer/footer.component';
 import { PlayerComponent } from './footer/player/player.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { RouterModule } from '@angular/router';
+import { MenuComponent } from './header/menu/menu.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { RouterModule } from '@angular/router';
     SidebarComponent,
     LoginDialogComponent,
     FooterComponent,
-    PlayerComponent
+    PlayerComponent,
+    MenuComponent,
   ],
   imports: [
     CommonModule,
@@ -63,7 +65,7 @@ import { RouterModule } from '@angular/router';
   exports: [
     HeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
   ]
 })
 export class ComponentsModule { }

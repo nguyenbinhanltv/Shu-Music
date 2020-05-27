@@ -3,20 +3,42 @@
     <h5>New Releases</h5>
     <p> Postions</p>
 
-    <div class="card-row" *ngFor="let file of files">
-      <div class="card-col" *ngFor="let music of file.album">
+    <div class="card-row" *ngIf="headerFiles">
+      <div class="card-col" *ngFor="let music of headerFiles">
         <img [src]="music.imageFile" class="header-image box-shadow" (click)="openFile(music, cloudService.index)">
       </div>
     </div>
 
-    <h5>New Played</h5>
-    <p> Postions</p>
+    <div class="behind">
+      <div style="width: 50%;">
+        <h5>Music</h5>
+        <p> Postions</p>
+      </div>
 
-    <nb-list listenWindowScroll="true" class="list-items" *ngFor="let file of files">
-      <nb-list-item class="tracks" *ngFor="let music of file.album">
-        <app-track [file]="music"></app-track>
-      </nb-list-item>
-    </nb-list>
+      <div style="width: 50%;">
+        <h5>Video</h5>
+        <p> Postions</p>
+      </div>
+    </div>
+
+    <div class="behind">
+      <div style="width: 50%; margin-right: 1vw;">
+        <nb-list listenWindowScroll="true" class="list-items" *ngFor="let file of files">
+          <nb-list-item class="tracks" *ngFor="let music of file.album">
+            <app-track [file]="music"></app-track>
+          </nb-list-item>
+        </nb-list>
+      </div>
+
+      <div style="width: 50%;">
+        <nb-list listenWindowScroll="true" class="list-items" *ngFor="let file of videoFiles">
+          <nb-list-item class="tracks" *ngFor="let video of file.album">
+            <app-track [file]="video"></app-track>
+          </nb-list-item>
+        </nb-list>
+      </div>
+    </div>
+
 
   </nb-card-body>
 </nb-card>

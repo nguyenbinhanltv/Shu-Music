@@ -13,7 +13,6 @@ export class TrackComponent implements OnInit, OnDestroy {
 
   @Input() file;
   likedSongFile: Array<any> = [];
-  likedSongId: Array<any> = [];
   user: any;
 
   constructor(
@@ -36,11 +35,10 @@ export class TrackComponent implements OnInit, OnDestroy {
       this.user = userData;
       if (this.user) {
         this.cloudService.getLikedSongData(this.user).subscribe(data => {
-          this.likedSongFile = data.map(e => e.payload.doc.data());
-          this.likedSongId = data.map(e => {
+          this.likedSongFile = data.map(e => {
             return {
-              likedSongId: e.payload.doc.id,
-              id: e.payload.doc.get('id')
+              musicFile: e.payload.doc.get('musicFile'),
+              id: e.payload.doc.id
             };
           });
         });
@@ -68,7 +66,7 @@ export class TrackComponent implements OnInit, OnDestroy {
 
   isInLikedSong(file) {
     for (const song of this.likedSongFile) {
-      if (file.id === song.id) {
+      if (file.musicFile === song.musicFile) {
         return true;
       }
     }
@@ -76,9 +74,9 @@ export class TrackComponent implements OnInit, OnDestroy {
   }
 
   deleteFromLikedSong(user, file) {
-    for (const song of this.likedSongId) {
-      if (song.id === file.id) {
-        return this.cloudService.deleteLikeSongData(user, song.likedSongId);
+    for (const song of this.likedSongFile) {
+      if (song.musicFile === file.musicFile) {
+        return this.cloudService.deleteLikeSongData(user, song.id);
       }
     }
   }

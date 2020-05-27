@@ -1,30 +1,23 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CloudService } from 'src/app/services/cloud.service';
 import { AudioService } from 'src/app/services/audio.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-vietnam',
+  templateUrl: './vietnam.component.html',
+  styleUrls: ['./vietnam.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class VietnamComponent implements OnInit {
 
-  files: Array<any>;
-  videoFiles: Array<any>;
+  files: any;
   headerFiles: Array<any> = [];
 
   typeMusic = 'v-music';
-  typeVideo = 'v-video';
 
   constructor(
     public cloudService: CloudService,
     public audioService: AudioService
   ) {
-    this.getMusicData();
-    this.getVideoData();
-  }
-
-  getMusicData() {
     this.cloudService.getMusicData(this.typeMusic)
     .then(async data => {
       this.files = await Object.values(Object.values(data)[0]);
@@ -35,28 +28,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  getVideoData() {
-    this.cloudService.getVideoData(this.typeVideo)
-    .then(async data => {
-      this.videoFiles = await Object.values(Object.values(data)[0]);
-    }
-    );
-  }
-
   ngOnInit() {
-  }
-
-  ngOnDestroy() {
   }
 
   playStream(url) {
     this.audioService.playStream(url).subscribe(events => {
       // listening for fun here
     });
-  }
-
-  playVideo(event) {
-    event.toElement.play();
   }
 
   openFile(file, index) {

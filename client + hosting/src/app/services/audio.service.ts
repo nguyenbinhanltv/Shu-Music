@@ -11,7 +11,7 @@ export class AudioService {
 
   private stop$ = new Subject();
   public audioObj = new Audio();
-  audioEvents = [
+  audioEvents: string[] = [
     'ended', 'error', 'play', 'playing', 'pause', 'timeupdate', 'canplay', 'loadedmetadata', 'loadstart'
   ];
   private state: StreamState = {

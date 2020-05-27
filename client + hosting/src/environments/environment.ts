@@ -13,7 +13,8 @@ export const environment = {
     messagingSenderId: '138777979494',
     appId: '1:138777979494:web:5a8bdbe037767445a19ba7',
     measurementId: 'G-M98KBFGYEM'
-  }
+  },
+  apiEndpoint: 'https://shu-music-api.firebaseapp.com/api/v1/'
 };
 
 /*
