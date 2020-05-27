@@ -42,3 +42,19 @@ const LiveVideoCollection = "l-video";
 // CRUDVideo.addVideoAlbum(VietNamVideoCollection, crawlData.videoAlbum.videoVietNam, 3);
 // CRUDVideo.addVideoAlbum(VietNamVideoCollection, crawlData.videoAlbum.videoVietNam, 4);
 // CRUDVideo.addVideoAlbum(VietNamVideoCollection, crawlData.videoAlbum.videoVietNam, 5);
+
+// CRUDMusic.addMusicAlbum(VietNamMusicCollection, crawlData.musicAlbum.nhacVietNam, 1);
+// CRUDMusic.addMusicAlbum(USUKMusicCollection, crawlData.musicAlbum.nhacUSUK, 1);
+// CRUDMusic.addMusicAlbum(TauKhuaMusicCollection, crawlData.musicAlbum.nhacHoa, 1);
+// CRUDMusic.addMusicAlbum(KoreaMusicCollection, crawlData.musicAlbum.nhacHan, 1);
+// CRUDMusic.addMusicAlbum(JapanMusicCollection, crawlData.musicAlbum.nhacNhat, 1);
+// CRUDMusic.addMusicAlbum(ForeignMusicCollection, crawlData.musicAlbum.nhacNuocKhac, 1);
+
+CRUDVideo.addVideoAlbum(VietNamVideoCollection, crawlData.videoAlbum.videoVietNam, 1);
+CRUDVideo.addVideoAlbum(USUKVideoCollection, crawlData.videoAlbum.videoUSUK, 1);
+CRUDVideo.addVideoAlbum(TauKhuaVideoCollection, crawlData.videoAlbum.videoHoa, 1);
+CRUDVideo.addVideoAlbum(KoreaVideoCollection, crawlData.videoAlbum.videoHan, 1);
+CRUDVideo.addVideoAlbum(JapanVideoCollection, crawlData.videoAlbum.videoNhat, 1);
+CRUDVideo.addVideoAlbum(FranceVideoCollection, crawlData.videoAlbum.videoPhap, 1);
+CRUDVideo.addVideoAlbum(ForeignVideoCollection, crawlData.videoAlbum.videoNuocKhac, 1);
+CRUDVideo.addVideoAlbum(LiveVideoCollection, crawlData.videoAlbum.videoLive, 1);
