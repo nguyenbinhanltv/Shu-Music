@@ -9,14 +9,35 @@
       </div>
     </div>
 
-    <h5>New Played</h5>
-    <p *ngIf="files">{{files.length}} Page</p>
+    <div class="behind">
+      <div style="width: 50%;">
+        <h5>Music</h5>
+        <p *ngIf="files">{{files.length}} Page</p>
+      </div>
 
-    <nb-list listenWindowScroll="true" class="list-items" *ngFor="let file of files">
-      <nb-list-item class="tracks" *ngFor="let music of file.album">
-        <app-track [file]="music"></app-track>
-      </nb-list-item>
-    </nb-list>
+      <div style="width: 50%;">
+        <h5>Video</h5>
+        <p *ngIf="videoFiles">{{videoFiles.length}} Page</p>
+      </div>
+    </div>
+
+    <div class="behind">
+      <div style="width: 50%; margin-right: 1vw;">
+        <nb-list listenWindowScroll="true" class="list-items" *ngFor="let file of files">
+          <nb-list-item class="tracks" *ngFor="let music of file.album">
+            <app-track [file]="music"></app-track>
+          </nb-list-item>
+        </nb-list>
+      </div>
+
+      <div style="width: 50%; margin-left: 1vw;">
+        <nb-list listenWindowScroll="true" class="list-items" *ngFor="let file of videoFiles">
+          <nb-list-item class="tracks" *ngFor="let video of file.album">
+            <app-video [file]="video"></app-video>
+          </nb-list-item>
+        </nb-list>
+      </div>
+    </div>
 
   </nb-card-body>
 </nb-card>

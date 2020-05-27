@@ -30,10 +30,10 @@
         </nb-list>
       </div>
 
-      <div style="width: 50%;">
+      <div style="width: 50%; margin-left: 1vw;">
         <nb-list listenWindowScroll="true" class="list-items" *ngFor="let file of videoFiles">
           <nb-list-item class="tracks" *ngFor="let video of file.album">
-            <app-track [file]="video"></app-track>
+            <app-video [file]="video"></app-video>
           </nb-list-item>
         </nb-list>
       </div>

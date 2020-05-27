@@ -1,0 +1,19 @@
+<nb-card size="tiny" class="liked-video-page">
+  <nb-card-body>
+
+    <h1>Your Liked Song</h1>
+
+    <nb-card size="tiny" class="playlist-detail box-shadow" (click)="playLikedVideoPlaylist()">
+      <nb-card-body class="liked-video">
+        <nb-icon icon="heart-outline"></nb-icon>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-list listenWindowScroll="true" class="list-items">
+      <nb-list-item class="tracks" *ngFor="let file of likedVideoFile">
+        <app-video [file]="file"></app-video>
+      </nb-list-item>
+    </nb-list>
+
+  </nb-card-body>
+</nb-card>

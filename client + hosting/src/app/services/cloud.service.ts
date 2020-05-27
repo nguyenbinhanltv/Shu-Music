@@ -55,4 +55,20 @@ export class CloudService {
     const userRef = this.db.doc(`users/${user.uid}`).collection('likedsong').doc(id);
     return userRef.delete();
   }
+
+  getLikedVideoData(user) {
+    if (user) {
+      return this.db.doc(`users/${user.uid}`).collection('likedvideo').snapshotChanges();
+    }
+  }
+
+  updateLikedVideoData(user, file) {
+    const userRef = this.db.firestore.doc(`users/${user.uid}`).collection('likedvideo');
+    return userRef.add(file);
+  }
+
+  deleteLikeVideoData(user, id) {
+    const userRef = this.db.doc(`users/${user.uid}`).collection('likedvideo').doc(id);
+    return userRef.delete();
+  }
 }

@@ -3,22 +3,22 @@ import { CloudService } from 'src/app/services/cloud.service';
 import { AudioService } from 'src/app/services/audio.service';
 
 @Component({
-  selector: 'app-us-uk',
-  templateUrl: './us-uk.component.html',
-  styleUrls: ['./us-uk.component.scss']
+  selector: 'app-france',
+  templateUrl: './france.component.html',
+  styleUrls: ['./france.component.scss']
 })
-export class UsUkComponent implements OnInit {
+export class FranceComponent implements OnInit {
 
   files: Array<any>;
   videoFiles: Array<any>;
   headerFiles: Array<any> = [];
 
-  typeMusic = 'us-music';
-  typeVideo = 'us-video';
+  typeMusic = 'f-music';
+  typeVideo = 'fc-video';
 
   constructor(
     public cloudService: CloudService,
-    public audioService: AudioService
+    public audioService: AudioService,
   ) {
     this.getMusicData();
     this.getVideoData();

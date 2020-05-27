@@ -16,6 +16,7 @@ import { AlbumDetailComponent } from './album-detail/album-detail.component';
 import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
 import { LikedSongComponent } from './liked-song/liked-song.component';
 import { HomeModule } from '../home/home.module';
+import { LikedVideoComponent } from './liked-video/liked-video.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HomeModule } from '../home/home.module';
     PlaylistDetailComponent,
     AlbumDetailComponent,
     ArtistDetailComponent,
-    LikedSongComponent
+    LikedSongComponent,
+    LikedVideoComponent
   ],
   imports: [
     CommonModule,

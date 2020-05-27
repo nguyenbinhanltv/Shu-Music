@@ -9,9 +9,8 @@ import { StreamState } from '../models/stream-state.model';
 })
 export class VideoService {
 
-  private videoObj;
+  private videoObj = new VideoTrack();
 
   constructor() {
-
   }
 }

@@ -9,13 +9,15 @@ import {
   NbUserModule,
   NbListModule,
   NbIconModule,
-  NbTooltipModule
+  NbTooltipModule,
+  NbWindowRef
 } from '@nebular/theme';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { VideoComponent } from './video/video.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, TrackComponent],
+  declarations: [HomeComponent, TrackComponent, VideoComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -26,6 +28,6 @@ import { ComponentsModule } from 'src/app/components/components.module';
     NbTooltipModule,
     ComponentsModule,
   ],
-  exports: [TrackComponent]
+  exports: [TrackComponent, VideoComponent]
 })
 export class HomeModule { }

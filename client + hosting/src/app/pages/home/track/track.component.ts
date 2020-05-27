@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { AudioService } from 'src/app/services/audio.service';
 import { CloudService } from 'src/app/services/cloud.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-track',

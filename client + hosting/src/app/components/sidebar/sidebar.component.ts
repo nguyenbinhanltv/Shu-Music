@@ -39,6 +39,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
           icon: 'heart-outline',
           link: ['library/liked-song']
         },
+        {
+          title: 'Liked Video',
+          icon: 'heart-outline',
+          link: ['library/liked-video']
+        },
       ],
     }
   ];

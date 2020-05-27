@@ -28,6 +28,7 @@ import { PlayerComponent } from './footer/player/player.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { RouterModule } from '@angular/router';
 import { MenuComponent } from './header/menu/menu.component';
+import { WindowVideoComponent } from './window-video/window-video.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { MenuComponent } from './header/menu/menu.component';
     FooterComponent,
     PlayerComponent,
     MenuComponent,
+    WindowVideoComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,41 @@
+<nb-card>
+  <nb-card-body>
+    <nb-user
+      nbTooltip="Play"
+      nbTooltipPlacement="top"
+      nbTooltipStatus="primary"
+      size="large"
+      picture={{file.imageFile}}
+      name={{file.title}}
+      title={{file.singer}}
+      (click)="openWindowVideo()">
+    </nb-user>
+
+    <div *ngIf="authService.user$ | async as user">
+      <button
+        *ngIf="!isInLikedVideo(file)"
+        nbTooltip="Add to liked video"
+        nbTooltipPlacement="top"
+        nbTooltipStatus="primary"
+        (click)="addToLikedVideo(user, file)">
+        <nb-icon icon="heart-outline" class="add-to-liked-video"></nb-icon>
+      </button>
+
+      <button
+        *ngIf="isInLikedVideo(file)"
+        nbTooltip="remove of liked video"
+        nbTooltipPlacement="top"
+        nbTooltipStatus="primary"
+        (click)="deleteFromLikedVideo(user, file)">
+        <nb-icon icon="heart-outline" class="remove-of-liked-video"></nb-icon>
+      </button>
+
+      <button
+      nbTooltip="More"
+      nbTooltipPlacement="top"
+      nbTooltipStatus="primary">
+        <nb-icon icon="more-horizontal-outline"></nb-icon>
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

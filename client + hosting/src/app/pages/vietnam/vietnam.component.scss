@@ -10,8 +10,12 @@
   justify-content: center;
 }
 
-app-track {
+app-track, app-video {
   width: 100%;
+}
+
+app-video {
+  height: 20vh;
 }
 
 p {
@@ -31,7 +35,7 @@ p {
 }
 
 .list-items {
-  width: 40%;
+  width: 100% !important;
 }
 
 .header-image {
@@ -40,6 +44,11 @@ p {
   border-radius: 2rem;
   cursor: pointer;
 
+}
+
+.behind {
+  display: flex;
+  flex-direction: row;
 }
 
 .box-shadow {

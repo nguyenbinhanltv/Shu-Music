@@ -15,12 +15,18 @@ import {
   NbIconModule,
   NbDialogModule,
   NbToastrModule,
-  NbToastrService
+  NbToastrService,
+  NbWindowModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ComponentsModule } from './components/components.module';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+
+const config = {
+  closeOnBackdropClick: true,
+  closeOnEsc: true
+};
 
 @NgModule({
   declarations: [
@@ -42,7 +48,8 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    NbWindowModule.forRoot(config)
   ],
   providers: [NbSidebarService, NbToastrService],
   bootstrap: [AppComponent]
