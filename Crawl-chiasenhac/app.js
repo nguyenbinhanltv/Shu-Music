@@ -30,19 +30,6 @@ const FranceVideoCollection = "fc-video";
 const ForeignVideoCollection = "f-video";
 const LiveVideoCollection = "l-video";
 
-
-// CRUDMusic.addMusicAlbum(VietNamMusicCollection, crawlData.musicAlbum.nhacVietNam, 1);
-// CRUDMusic.addMusicAlbum(VietNamMusicCollection, crawlData.musicAlbum.nhacVietNam, 2);
-// CRUDMusic.addMusicAlbum(VietNamMusicCollection, crawlData.musicAlbum.nhacVietNam, 3);
-// CRUDMusic.addMusicAlbum(VietNamMusicCollection, crawlData.musicAlbum.nhacVietNam, 4);
-// CRUDMusic.addMusicAlbum(VietNamMusicCollection, crawlData.musicAlbum.nhacVietNam, 5);
-
-// CRUDVideo.addVideoAlbum(VietNamVideoCollection, crawlData.videoAlbum.videoVietNam, 1);
-// CRUDVideo.addVideoAlbum(VietNamVideoCollection, crawlData.videoAlbum.videoVietNam, 2);
-// CRUDVideo.addVideoAlbum(VietNamVideoCollection, crawlData.videoAlbum.videoVietNam, 3);
-// CRUDVideo.addVideoAlbum(VietNamVideoCollection, crawlData.videoAlbum.videoVietNam, 4);
-// CRUDVideo.addVideoAlbum(VietNamVideoCollection, crawlData.videoAlbum.videoVietNam, 5);
-
 // CRUDMusic.addMusicAlbum(VietNamMusicCollection, crawlData.musicAlbum.nhacVietNam, 1);
 // CRUDMusic.addMusicAlbum(USUKMusicCollection, crawlData.musicAlbum.nhacUSUK, 1);
 // CRUDMusic.addMusicAlbum(TauKhuaMusicCollection, crawlData.musicAlbum.nhacHoa, 1);
