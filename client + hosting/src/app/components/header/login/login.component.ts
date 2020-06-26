@@ -4,6 +4,8 @@ import { filter, map } from 'rxjs/operators';
 import { LoginDialogComponent } from '../../dialog/login-dialog/login-dialog.component';
 import { AuthService } from 'src/app/services/auth.service';
 
+import { AngularFireAuth } from '@angular/fire/auth';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private dialogService: NbDialogService,
-    public authService: AuthService
+    public authService: AuthService,
   ) { }
 
   ngOnInit() {

@@ -22,6 +22,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ComponentsModule } from './components/components.module';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, FormBuilder } from '@angular/forms';
 
 const config = {
   closeOnBackdropClick: true,
@@ -49,9 +50,10 @@ const config = {
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
-    NbWindowModule.forRoot(config)
+    NbWindowModule.forRoot(config),
+    FormsModule
   ],
-  providers: [NbSidebarService, NbToastrService],
+  providers: [NbSidebarService, NbToastrService, FormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,14 +1,27 @@
 <div *ngIf="authService.user$ | async; then authenticated else guest">
 </div>
 <ng-template #guest>
-  <nb-card status="basic">
-    <nb-card-header>
-      <nb-icon icon="google-outline"></nb-icon>
-      Login with Google
-    </nb-card-header>
+  <nb-card>
     <nb-card-body>
-      <button nbButton fullWidth status="primary" (click)="loginWithGoogle()">Login</button>
+
+      <nb-tabset>
+        <nb-tab tabTitle="Sign In">
+          <input formControlName="email" type="email" nbInput fullWidth status="primary" placeholder="Email" style="margin-top: 2vh;">
+          <input formControlName="password" type="password" nbInput fullWidth status="primary" placeholder="Password" style="margin-top: 2vh;">
+          <button nbButton fullWidth status="primary" (click)="loginWithEmailAndPassword()" style="margin-top: 2vh;">Login</button>
+
+          <button nbButton fullWidth status="success" (click)="loginWithGoogle()" style="margin-top: 2vh;">
+            <nb-icon icon="google-outline"></nb-icon>
+            Login with Google
+          </button>
+        </nb-tab>
+        <nb-tab tabTitle="Sign Up">
+          <p>List of <strong>orders</strong>.</p>
+        </nb-tab>
+      </nb-tabset>
+
     </nb-card-body>
+
   </nb-card>
 </ng-template>
 
@@ -19,20 +32,10 @@
       Your are logged with Google
     </nb-card-header>
     <nb-card-body *ngIf="authService.user$ | async as user">
-      <nb-user
-        size="giant"
-        shape="rectangle"
-        name={{user.displayName}}
-        title={{user.email}}
-        picture={{user.photoURL}}>
+      <nb-user size="giant" shape="rectangle" name={{user.displayName}} title={{user.email}} picture={{user.photoURL}}>
       </nb-user>
-      <button
-        nbButton
-        fullWidth
-        status="primary"
-        (click)="signOut()"
-        style="margin-top: 10vh">
-      Log out</button>
+      <button nbButton fullWidth status="primary" (click)="signOut()" style="margin-top: 10vh">
+        Log out</button>
     </nb-card-body>
   </nb-card>
 </ng-template>
