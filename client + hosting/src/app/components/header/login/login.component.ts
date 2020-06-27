@@ -13,6 +13,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class LoginComponent implements OnInit {
 
+  logoURL = '';
+
   constructor(
     private dialogService: NbDialogService,
     public authService: AuthService,
@@ -23,6 +25,14 @@ export class LoginComponent implements OnInit {
 
   open() {
     this.dialogService.open(LoginDialogComponent);
+  }
+
+  getAvatar(user) {
+    if (user.photoURL) {
+      return this.logoURL = user.photoURL;
+    } else {
+      return this.logoURL = '../../../../assets/images/logo.jpg';
+    }
   }
 
 }

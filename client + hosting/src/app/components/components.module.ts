@@ -16,7 +16,8 @@ import {
   NbToastrModule,
   NbToastrService,
   NbTooltipModule,
-  NbTabsetModule
+  NbTabsetModule,
+  NbAlertModule
 } from '@nebular/theme';
 import { SearchComponent } from './header/search/search.component';
 import { LogoComponent } from './header/logo/logo.component';
@@ -30,7 +31,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { RouterModule } from '@angular/router';
 import { MenuComponent } from './header/menu/menu.component';
 import { WindowVideoComponent } from './window-video/window-video.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -65,6 +66,9 @@ import { FormsModule } from '@angular/forms';
     NbTooltipModule,
     RouterModule,
     NbTabsetModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NbAlertModule
   ],
   entryComponents: [LoginDialogComponent],
   exports: [

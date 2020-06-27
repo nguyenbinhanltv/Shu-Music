@@ -6,9 +6,19 @@
 
       <nb-tabset>
         <nb-tab tabTitle="Sign In">
-          <input formControlName="email" type="email" nbInput fullWidth status="primary" placeholder="Email" style="margin-top: 2vh;">
-          <input formControlName="password" type="password" nbInput fullWidth status="primary" placeholder="Password" style="margin-top: 2vh;">
-          <button nbButton fullWidth status="primary" (click)="loginWithEmailAndPassword()" style="margin-top: 2vh;">Login</button>
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <input formControlName="email" type="email" nbInput status="primary" placeholder="Email"
+              style="margin-top: 2vh; width: 100%;">
+            <nb-alert style="width: 100%; margin-top: 1vh;" status="danger" *ngIf="!userForm.controls['email'].valid && userForm.controls['email'].dirty">
+              Email sai hoặc không có.</nb-alert>
+            <input formControlName="password" type="password" nbInput status="primary" placeholder="Password"
+              style="margin-top: 2vh; width: 100%;">
+            <nb-alert style="width: 100%; margin-top: 1vh;" status="danger" *ngIf="!userForm.controls['password'].valid && userForm.controls['password'].dirty">
+              Password không hợp lệ.</nb-alert>
+          </form>
+
+          <button nbButton fullWidth status="primary" (click)="loginWithEmailAndPassword(userForm.value)"
+            style="margin-top: 2vh;">Login</button>
 
           <button nbButton fullWidth status="success" (click)="loginWithGoogle()" style="margin-top: 2vh;">
             <nb-icon icon="google-outline"></nb-icon>
@@ -16,7 +26,20 @@
           </button>
         </nb-tab>
         <nb-tab tabTitle="Sign Up">
-          <p>List of <strong>orders</strong>.</p>
+
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)" style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <input formControlName="email" type="email" nbInput status="primary" placeholder="Email"
+              style="margin-top: 2vh; width: 100%;">
+            <nb-alert style="width: 100%; margin-top: 1vh;" status="danger" *ngIf="!userForm.controls['email'].valid && userForm.controls['email'].dirty">
+              Tên đăng nhập phải là email</nb-alert>
+            <input formControlName="password" type="password" nbInput status="primary" placeholder="Password"
+              style="margin-top: 2vh; width: 100%;">
+            <nb-alert style="width: 100%; margin-top: 1vh;" status="danger" *ngIf="!userForm.controls['password'].valid && userForm.controls['password'].dirty">
+              Password không hợp lệ.</nb-alert>
+          </form>
+
+          <button nbButton fullWidth status="primary" (click)="createWithEmailAndPassword(userForm.value)"
+            style="margin-top: 2vh;">Sign Up</button>
         </nb-tab>
       </nb-tabset>
 

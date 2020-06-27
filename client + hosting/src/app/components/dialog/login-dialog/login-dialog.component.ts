@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NbDialogRef, NbToastrService, NbComponentStatus } from '@nebular/theme';
 import { auth } from 'firebase/app';
@@ -12,26 +12,29 @@ import {
 
 @Component({
   templateUrl: './login-dialog.component.html',
-  styleUrls: ['./login-dialog.component.scss']
+  styleUrls: ['./login-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginDialogComponent implements OnInit {
-  email: FormControl;
-  password: FormControl;
+  userForm: FormGroup;
 
   constructor(
     public authService: AuthService,
     private afAuth: AngularFireAuth,
     private dialogRef: NbDialogRef<LoginDialogComponent>,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.email = new FormControl('', Validators.email);
-    this.password = new FormControl('', Validators.minLength(6));
+    this.userForm = this.fb.group({
+      email: new FormControl('', Validators.email),
+      password: new FormControl('', Validators.minLength(6))
+    });
   }
 
-  showToast(status: NbComponentStatus, position) {
-    this.toastrService.show(status, 'Login successfully', { status, duration: 1000, position });
+  showToast(status: NbComponentStatus, position, messages) {
+    this.toastrService.show(status, messages, { status, duration: 1000, position });
   }
 
   async loginWithGoogle() {
@@ -39,26 +42,46 @@ export class LoginDialogComponent implements OnInit {
     const credetial = await this.afAuth.auth.signInWithPopup(provider);
     return this.authService.updateUserData(credetial.user)
     .then(() => {
-      this.showToast('success', 'top-right');
+      this.showToast('success', 'top-right', 'Đăng nhập thành công.');
       this.dialogRef.close();
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      this.showToast('danger', 'top-right', 'Lỗi đăng nhập');
+    });
   }
 
-  async loginWithEmailAndPassword() {
-    const credetial = await this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password);
+  async loginWithEmailAndPassword(userFormValue) {
+    const credetial = await this.afAuth.auth.signInWithEmailAndPassword(userFormValue.email, userFormValue.password);
     return this.authService.updateUserData(credetial.user)
     .then(() => {
-      this.showToast('success', 'top-right');
+      this.showToast('success', 'top-right', 'Đăng nhập thành công.');
       this.dialogRef.close();
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      this.showToast('danger', 'top-right', 'Lỗi đăng nhập');
+    });
+  }
+
+  async createWithEmailAndPassword(userFormValue) {
+    const credetial = await this.afAuth.auth.createUserWithEmailAndPassword(userFormValue.email, userFormValue.password);
+    return this.authService.updateUserData(credetial.user)
+    .then(() => {
+      this.showToast('success', 'top-right', 'Đăng ký thành công.');
+      this.dialogRef.close();
+    })
+    .catch((err) => {
+      this.showToast('danger', 'top-right', 'Lỗi đăng ký không thành công.');
+    });
   }
 
   signOut() {
     this.authService.logOut();
     location.reload();
     this.dialogRef.close();
+  }
+
+  onSubmit(value) {
+    this.loginWithEmailAndPassword(value);
   }
 
 }
