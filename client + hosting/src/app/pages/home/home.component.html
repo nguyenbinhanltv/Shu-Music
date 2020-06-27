@@ -1,7 +1,7 @@
-<nb-card size="tiny" class="home">
+<nb-card size="tiny" class="vietnam">
   <nb-card-body>
     <h5>New Releases</h5>
-    <p> Postions</p>
+    <p>{{headerFiles.length}} Postions</p>
 
     <div class="card-row" *ngIf="headerFiles">
       <div class="card-col" *ngFor="let music of headerFiles">
@@ -12,12 +12,12 @@
     <div class="behind">
       <div style="width: 50%;">
         <h5>Music</h5>
-        <p> Postions</p>
+        <p *ngIf="files">{{files.length}} Page</p>
       </div>
 
       <div style="width: 50%;">
         <h5>Video</h5>
-        <p> Postions</p>
+        <p *ngIf="videoFiles">{{videoFiles.length}} Page</p>
       </div>
     </div>
 
@@ -38,7 +38,6 @@
         </nb-list>
       </div>
     </div>
-
 
   </nb-card-body>
 </nb-card>

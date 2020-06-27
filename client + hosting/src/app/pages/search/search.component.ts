@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   files: Array<any> = [];
   searchFiles: Array<any> = [];
-  value: any;
+  value = '';
   typeMusic = 'v-music';
 
   constructor(
@@ -22,15 +22,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) {
     this.searchBySubmit();
     this.searchByInput();
-    this.cloudService.getMusicData(this.typeMusic)
-    .then(async data => {
-      this.files = Object.values(await data)[0];
-      this.files = Object.values(this.files);
-    }
-    );
   }
 
   ngOnInit() {
+    this.cloudService.getMusicData(this.typeMusic)
+    .then(async data => {
+      this.files = Object.values(Object.values(data)[0]);
+    });
   }
 
   ngOnDestroy() {
@@ -71,5 +69,4 @@ export class SearchComponent implements OnInit, OnDestroy {
       }
     });
   }
-
 }
